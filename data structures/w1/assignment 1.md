@@ -112,7 +112,7 @@ Deletion at the end of the array
 Let's briefly review the idea of an array. Basically, order of element is dependant on address. They don't point to another location in memory. Rather their addresses themselves imply what is before and after. Searching simply involves checking each address, whereas changing it would require pushing everything later in the list because there is now an abscence in the pattern.
 
 ## 3.1: Searching for a value not contained within the array
-This would take 100 steps. The way search works, the computer just looks at each value until it finds the right one. So it's just going to go through each one, and each time say "nope, not it" and try the next one until it is out of options.
+This is the worst case, so it would take 100 steps i.e N steps. The way search works, the computer just looks at each value until it finds the right one. So it's just going to go through each one, and each time say "nope, not it" and try the next one until it is out of options.
 
 ## 3.2: Insertion at the beginning of the array
 101 steps. The beginning of an array is at index 0. And again, the whole order is determined by what is next in the address. If you want to insert something in the beginning, you have to push everything to the right (raise their position each by one), 100 steps, and then your insertion. so 101 steps. 
