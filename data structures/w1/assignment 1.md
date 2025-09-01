@@ -1,9 +1,6 @@
 # Array data structure assignment 
-https://youtu.be/cadLBhIMa1o
 
-https://youtu.be/cadLBhIMa1o
-
-https://youtu.be/cadLBhIMa1o
+Video explanation: https://youtu.be/cadLBhIMa1o
 
 ## Task 1: "Explain how to create an array of 100 elements. You can choose any data type of your choice."
 
