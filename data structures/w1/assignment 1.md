@@ -91,10 +91,6 @@ int main() {
     size_t sizeTArray[100];
     cout << "size_t: " << sizeof(sizeTArray[0]) << " bytes" << endl;
 
-    // Uninitialized case, still type-dependent
-    int notInit[5];
-    cout << "uninitialized int element: " << sizeof(notInit[0]) << " bytes" << endl;
-
     return 0;
 }
 
