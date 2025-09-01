@@ -144,7 +144,7 @@ int main() {
     int arr[5] = {1, 2, 3, 4, 5};
 
     cout << "arr: " << arr << endl;       // prints address of first element
-    cout << "&arr: " << &arr << endl;     // technically same address, but type is different
+    cout << "&arr: " << &arr << endl;     // technically same address for whole array
     cout << "&arr[0]: " << &arr[0] << endl; // explicitly first element
 
     return 0;
