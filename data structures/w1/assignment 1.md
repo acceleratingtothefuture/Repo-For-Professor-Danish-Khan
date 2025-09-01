@@ -64,24 +64,40 @@ The size depends on the data type of the array elements.
 using namespace std;
 
 int main() {
-    // Array of integers
     int intArray[100];
-    cout << "Size of each int element: " << sizeof(intArray[0]) << " bytes" << endl;
+    cout << "int: " << sizeof(intArray[0]) << " bytes" << endl;
 
-    // Array of doubles
-    double doubleArray[100];
-    cout << "Size of each double element: " << sizeof(doubleArray[0]) << " bytes" << endl;
+    short shortArray[100];
+    cout << "short: " << sizeof(shortArray[0]) << " bytes" << endl;
 
-    // Array of characters
+    long longArray[100];
+    cout << "long: " << sizeof(longArray[0]) << " bytes" << endl;
+
+    long long longLongArray[100];
+    cout << "long long: " << sizeof(longLongArray[0]) << " bytes" << endl;
+
+    bool boolArray[100];
+    cout << "bool: " << sizeof(boolArray[0]) << " byte(s)" << endl;
+
     char charArray[100];
-    cout << "Size of each char element: " << sizeof(charArray[0]) << " byte" << endl;
+    cout << "char: " << sizeof(charArray[0]) << " byte" << endl;
 
-    // Edge case: what if not initialized?
-    int notInit[5]; // Values are garbage, but size is still defined by type
-    cout << "Size of each element in notInit: " << sizeof(notInit[0]) << " bytes" << endl;
+    double doubleArray[100];
+    cout << "double: " << sizeof(doubleArray[0]) << " bytes" << endl;
+
+    float floatArray[100];
+    cout << "float: " << sizeof(floatArray[0]) << " bytes" << endl;
+
+    size_t sizeTArray[100];
+    cout << "size_t: " << sizeof(sizeTArray[0]) << " bytes" << endl;
+
+    // Uninitialized case, still type-dependent
+    int notInit[5];
+    cout << "uninitialized int element: " << sizeof(notInit[0]) << " bytes" << endl;
 
     return 0;
 }
+
 ```
 
 ## Task 3: For an array containing 100 elements, provide the number of steps the following operations would take:
