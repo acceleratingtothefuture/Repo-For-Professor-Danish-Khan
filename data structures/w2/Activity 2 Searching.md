@@ -24,17 +24,13 @@ using namespace std;
 
 /*
     Demo: linear search vs binary search on a sorted array.
-    - Array A has 32 integers sorted in ascending order.
-    - We search for target T twice: first linearly, then with binary search.
-    - Outputs the found index (or -1 if not found) and the number of steps taken.
-
-    Notes:
-    - Linear search inspects elements from left to right. O(N).
-    - Binary search halves the remaining range each step. O(log N).
+    Array A has 32 integers sorted in ascending order.
+    We search for target T twice: first linearly, then with binary search.
+    Outputs the found index (or -1 if not found) and shows steps and count of steps taken. 
 */
 
 int main() {
-    // Number of elements in the array. Fixed for this demo.
+    // Number of elements in the array.
     const int N = 32;
 
     // Sorted array with values 10, 20, ..., 320.
