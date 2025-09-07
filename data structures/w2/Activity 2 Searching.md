@@ -5,7 +5,7 @@ Video explanation:
 
 ## Task 1: "How many steps would it take to perform a linear search for the number 8 in the ordered array, [2, 4, 6, 8, 10, 12, 13]?"
 
-This would take four steps. First, it would check 2, which is not 8. Second, it would look for 4, which is not 8. Third it would look for 6, which is 8. Fourth, it would look for 8, which is 8. At that point it does not continue since it found 8.
+This would take four steps. First, it would check 2, which is not 8. Second, it would look for 4, which is not 8. Third it would look for 6, which is not 8. Fourth, it would look for 8, which is 8. At that point it does not continue since it found 8.
 
 ## Task 2: "How many steps would binary search take for the previous example?"
 
