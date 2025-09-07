@@ -51,9 +51,8 @@ int main() {
     // Announce the target being searched.
     cout << "Looking for " << T << "\n";
 
-    // -------------------------
-    // Linear search
-    // -------------------------
+  
+   /* Linear search */ 
 
     // steps_lin counts how many element checks the linear search performs.
     int steps_lin = 0;
@@ -81,9 +80,7 @@ int main() {
     // Report the result of linear search: index where T was found and steps taken.
     cout << "[linear] index=" << idx_lin << " steps=" << steps_lin << "\n\n";
 
-    // -------------------------
-    // Binary search
-    // -------------------------
+    /* Binary search */ 
 
     cout << "[binary]\n\n";
 
@@ -94,12 +91,12 @@ int main() {
     // Initialize to -1 to indicate "not found" until proven otherwise.
     int idx_bin = -1;
 
-    // L and U define the current inclusive search bounds: [L, U].
+    // L and U define the current search bounds: [L, U].
     // Start with the full array: lower bound L at 0 and upper bound U at N-1.
     int L = 0;
     int U = N - 1;
 
-    // Continue as long as there is a valid range to inspect.
+    // Keep going as long as there is a valid range to inspect.
     while (L <= U) {
         // Compute midpoint index without risking overflow:
         // m = L + (U - L) / 2
@@ -128,7 +125,7 @@ int main() {
             idx_bin = m;  // record found index
             cout << " equal to T, found at index " << m << "\n";
 
-            // Exit the loop because the search is complete.
+            // Exit the loop because the search is done.
             break;
         }
     }
@@ -139,7 +136,6 @@ int main() {
     // Report the result of binary search: index where T was found and steps taken.
     cout << "index=" << idx_bin << " steps=" << steps_bin << "\n";
 
-    // Return 0 to indicate successful program termination.
     return 0;
 }
 
