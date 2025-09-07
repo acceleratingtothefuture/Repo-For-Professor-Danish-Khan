@@ -13,7 +13,7 @@ One step. Start (0 + 6) / 2 = 3. Floor of 3 is 3. Check element 3, which is 8. Y
 
 ## Task 3: "What is the maximum number of steps it would take to perform a binary search on an array of size 100,000?"
 
-17 steps. Binary search complexity increases with <img width="43.5" height="23" alt="image" src="https://github.com/user-attachments/assets/9bb5b891-9a2d-47ee-9f66-60508b243bed" /> therefore we take log base 2 of 100,000, which is 16 and change. Therefore, 16 steps would not be enough in all cases. Round up to 17. 2 to the power of 16 is less than 100,000 but 2 to the power of 17 is more than 100,000. So it would take 17 steps at most. 
+17 steps. Binary search complexity increases with <img width="65.25" height="39" alt="image" src="https://github.com/user-attachments/assets/9bb5b891-9a2d-47ee-9f66-60508b243bed" /> therefore we take log base 2 of 100,000, which is 16 and change. Therefore, 16 steps would not be enough in all cases. Round up to 17. 2 to the power of 16 is less than 100,000 but 2 to the power of 17 is more than 100,000. So it would take 17 steps at most. 
 
 
 <img width="366" height="93" alt="image" src="https://github.com/user-attachments/assets/a9e18d4f-fad7-4a63-bf64-25ba9adc7124" />
