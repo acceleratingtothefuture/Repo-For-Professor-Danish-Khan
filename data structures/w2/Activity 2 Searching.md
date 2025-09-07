@@ -96,7 +96,7 @@ int main() {
     int L = 0;
     int U = N - 1;
 
-    // Keep going as long as there is a valid range to inspect (this is false when we our target wasn't in the array). 
+    // Keep going as long as there is a valid range to inspect (this is false when our target wasn't in the array). 
     while (L <= U) {
         // Compute midpoint index without risking overflow:
         int m = L + (U - L) / 2;
