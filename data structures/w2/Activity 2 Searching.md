@@ -1,7 +1,7 @@
 
 # Activity 2: Searching 
 
-Video explanation:
+Video explanation: https://www.youtube.com/watch?v=nXgX-kUcw8U
 
 ## Task 1: "How many steps would it take to perform a linear search for the number 8 in the ordered array, [2, 4, 6, 8, 10, 12, 13]?"
 
