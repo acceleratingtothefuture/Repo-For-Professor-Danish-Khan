@@ -132,7 +132,7 @@ int main() {
     // Print a blank line for spacing.
     cout << "\n";
 
-    // Report the result of binary search: index where T was found and steps taken.
+    // Give the result of binary search: index where T was found and steps taken.
     cout << "index=" << idx_bin << " steps=" << steps_bin << "\n";
 
     return 0;
