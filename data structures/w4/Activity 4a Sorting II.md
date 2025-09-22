@@ -37,7 +37,7 @@ In the worst case, it will be totally out of order and each element will need to
 <img width="838" height="737" alt="image" src="https://github.com/user-attachments/assets/c8b73412-d313-4b89-b0e3-8fdbc7f3ca63" />
 
 
-Let's calculate the time complexity of the average case. 
+Let's calculate the time complexity of the worst case. 
 
 At element i, we have to do a compare and a switch for all the elements before it. So two steps, (i - 1) times. 
 
