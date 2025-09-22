@@ -34,7 +34,8 @@ Before we look at the worst case scenario, let's recall the sum of natural numbe
 In the worst case, it will be totally out of order and each element will need to be compared and swapped all the way back to the beginning. 
 
 
-<img width="1022" height="901" alt="Untitled" src="https://github.com/user-attachments/assets/c762d1cb-c744-44b8-a0c7-49689cc5c97f" />
+<img width="838" height="737" alt="image" src="https://github.com/user-attachments/assets/c8b73412-d313-4b89-b0e3-8fdbc7f3ca63" />
+
 
 Let's calculate the time complexity of the average case. 
 
