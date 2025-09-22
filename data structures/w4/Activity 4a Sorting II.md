@@ -36,6 +36,8 @@ In the worst case, it will be totally out of order and each element will need to
 
 <img width="838" height="737" alt="image" src="https://github.com/user-attachments/assets/c8b73412-d313-4b89-b0e3-8fdbc7f3ca63" />
 
+I apologize for the low quality. It was the highest quality my computer would upload
+
 
 Let's calculate the time complexity of the worst case. 
 
