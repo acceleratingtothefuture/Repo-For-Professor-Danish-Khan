@@ -1,7 +1,7 @@
 
 # Activity 4a: Sorting II
 
-Video explanation: 
+Video explanation: https://youtu.be/aCDSNWqQA-0
 
 ## Task 1: "Proof that, under the average-case scenario, the insertion sort has a time complexity of O(N<sup>2</sup>). Draw a clear figure and show all the operations clearly."
 
