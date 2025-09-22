@@ -7,7 +7,8 @@ Video explanation:
 
 To understand the average case, let's compare it to the best case and worst case. Consider the best case. 
 
-<img width="1032" height="615" alt="Untitled" src="https://github.com/user-attachments/assets/79831346-1e58-4a98-9fad-587b2a753d15" />
+<img width="1032" height="615" alt="Untitled" src="https://github.com/user-attachments/assets/10533f0d-33e6-4580-bd1e-9844bdcba524" />
+
 
 So for each element of N elements, we just compare it, see that it doesn't need to be swapped, and continue. So for each N, we always do one thing. <img width="217" height="170" alt="image" src="https://github.com/user-attachments/assets/312c4f6d-6a52-497f-a691-63c3a805865e" />
 
