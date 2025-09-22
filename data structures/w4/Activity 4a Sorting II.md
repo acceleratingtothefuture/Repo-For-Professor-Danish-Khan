@@ -5,9 +5,12 @@ Video explanation:
 
 ## Task 1: "Proof that, under the average-case scenario, the insertion sort has a time complexity of O(N<sup>2</sup>). Draw a clear figure and show all the operations clearly."
 
-To understand the average case, let's compare it to the best case and worst case. Consider the best case. 
+To understand the average case, let's compare it to the best case and worst case. Consider the best case. Notice how each comparison gives i > (i - 1) and no further swapping or comparison is needed. 
+
 
 <img width="1022" height="901" alt="Untitled" src="https://github.com/user-attachments/assets/cb479b20-f242-4312-b148-7d1bc2d2792d" />
+
+Let's calculate the time complexity of the best case. 
 
 So for each element of N elements, we just compare it, see that it doesn't need to be swapped, and continue. So for each N, we always do one step.
 
@@ -17,7 +20,7 @@ Except we don't need to do the very first one.
 
 <img width="257" height="86" alt="image" src="https://github.com/user-attachments/assets/5c222664-9f9c-4a29-8f23-34f7cb376500" /> 
 
-So it's N - 1. Which is O(N). 
+So it's N - 1. The best case time complexity is therefore O(N). 
 
 
 
@@ -28,7 +31,12 @@ Before we look at the worst case scenario, let's recall the sum of natural numbe
 
 ## Worst Case Scenario
 
+In the worst case, it will be totally out of order and each element will need to be compared and swapped all the way back to the beginning. 
+
+
 <img width="1022" height="901" alt="Untitled" src="https://github.com/user-attachments/assets/c762d1cb-c744-44b8-a0c7-49689cc5c97f" />
+
+Let's calculate the time complexity of the average case. 
 
 At element i, we have to do a compare and a switch for all the elements before it. So two steps, (i - 1) times. 
 
@@ -67,12 +75,14 @@ Subtract.
 
 <img width="238" height="108" alt="image" src="https://github.com/user-attachments/assets/6c070326-41bf-4f0f-98f4-2e61eb0b408d" />
 
-The degree is 2. So according to the rules of big O notation, we only care about the highest degree, therefore it's O(N<sup>2</sup>). 
+The degree is 2. So according to the rules of big O notation, we only care about the highest degree, therefore the worst case time complexity is O(N<sup>2</sup>). 
 
 
 ## Average Case Scenario
 
 <img width="1022" height="1039" alt="Untitled" src="https://github.com/user-attachments/assets/4a6cd9d9-f78e-463a-8f16-3f7df0a7133d" />
+
+Let's calculate the time complexity of the worst case. 
 
 
 So each element i probably averages out to about half of its worst case number of steps. 
@@ -90,7 +100,7 @@ We already found what everything to the right of 1/2 was (the worst case scenari
 <img width="238" height="108" alt="image" src="https://github.com/user-attachments/assets/6c070326-41bf-4f0f-98f4-2e61eb0b408d" />
 
 
-So its just half of that.
+So it's just half of that.
 
 <img width="377" height="142" alt="image" src="https://github.com/user-attachments/assets/72d9239c-d939-4cd3-96e6-9afd3ea2b565" />
 
@@ -99,7 +109,7 @@ We can distribute the 1/2
 
 <img width="342" height="122" alt="image" src="https://github.com/user-attachments/assets/c6f11c3f-d70c-4e16-998d-7ae06fae755e" />
 
-But in big O, we don't care about coeffecients or lesser degrees. We care about the N<sup>2</sup>. Therefore, average case is O(N<sup>2</sup>). 
+But in big O, we don't care about coeffecients or lesser degrees. We care about the N<sup>2</sup>. Therefore, average case time complexity is O(N<sup>2</sup>). 
 
 
 ## Task 2: "At the start of the insertion sort, the index of the inspected value is set to 1. Change the index of the inspected value and verify that the total number of operations equals 20. Consider the worst-case scenario. Use N=5, where N is the number of elements."
@@ -138,7 +148,8 @@ function containsX(string) {
 	return foundX; 
 }
 ```
-Time complexity is O(N). It goes through and compares each and every thing to look for X. In the best case, we find X right away. We should make it so that as soon as we've found it, we exit. In the average case, we still don't need to go through the whole thing, because we will find it closer to the middle of the array rather than the end or not there at all. What we should do is return as soon as we find it. We can also just assume we'll find X somewhere. That way, if we are optimizing for the average and best case (where X is at the beginning or middle respectively), we can just return the location as soon as we get it. We don't need to update the variable to true, because it's already set to true. This might not be massive, but I think it makes things a bit neater. 
+Time complexity is O(N). It goes through and compares each and every thing to look for X. Each step is just a comparison to X per element in the array of N elements. In the best case, we find X right away. We should make it so that as soon as we've found it, we exit. We don't need to keep searching. What we should do is return as soon as we find it. That way, if we are optimizing for the average and best case (where X is at the beginning or around the middle respectively, i.e we don't need to look through each one). We can just return the location as soon as find X. 
+
 ```c++
 function containsX(string) {
 	foundX = true; 
@@ -152,4 +163,4 @@ function containsX(string) {
 }
 ```
 
-
+We don't need to update the variable to true, because it's already set to true. This might not be massive, but I think initalizing the boolean as true makes it better for scenarios where we do find X (not the worst case). 
