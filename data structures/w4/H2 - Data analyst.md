@@ -1,3 +1,56 @@
+# H2 - Data analyst
+
+You are a data analyst for a company that sells residential computers. The manager shared with you a dataset of the year 2023 sales.
+
+<img width="342" height="462" alt="image" src="https://github.com/user-attachments/assets/9c24edd4-3933-44a8-8f10-c60c0d7187d8" />
+
+
+A manager is planning an advertising campaign and needs to identify the stretch of consecutive months with the highest total sales. The goal is to target ads immediately before and after that peak run of months.
+
+
+** a. Approach (no code or pseudocode):
+Describe, in plain language, how you would determine which consecutive months produce the highest total sales. Clearly state the inputs, the desired output (start month, end month, and total), and how you’ll handle ties, all-negative values, or multiple peak segments.
+
+We need an algorithim that traverses an array of sales and makes new calculations with each element. This will be the fastest. By doing a live algorithim to find the best possible subarray based on what we've seen each time, we can come to a conclusion through only one traversal through the array, hopefully giving it O(N) run time. 
+
+An effecient and popular algorithim like this is one that compares the current value to the current subarray one is on. If the new value in itself is greater than its sum with the current subarray, then the current subarray is very negative and should be discarded. It makes the new current subarray starting with this new element. Otherwise, if the current subarray is increaed by adding this element, it just adds the element to the current subarray. Once it is on a new subarray, it compares it to the highest valued subarray seen so far. If this one is the greatest, it sets it as that. 
+
+Let's see the idea for this with an example
+<img width="564" height="345" alt="image" src="https://github.com/user-attachments/assets/8ccbc939-8336-4ba3-9c0d-62b3d961a7cd" />
+credit: https://media.geeksforgeeks.org/wp-content/cdn-uploads/kadane-Algorithm.png
+
+
+Here is the algorithim's thought process for each element:
+
+Element: 0. Value: -2. This is the only element we've seen so far. So by default, we will set it as the current subarray and the max subarray. 
+
+Element: 1. Value: -3. -3 by itself is better than -2 and -3. If we find better numbers, we want to discard that -2 from the beginning of it so that we can find So our new current subarray will be -3. 
+
+
+If you haven't noticed, the main problem with this algorithim is that it is basically just looking for the patches of positive numbers that can best balance out the negative numbers between them (i.e the highest positive numbers separated by the least amount of negativity i.e as few elements of negative numbers as close to zero as possible). 
+
+In other words, this algorithim expects a relative even distribution, perhaps uniform or normal, of positive and negative numbers. This is terrible for our sales data because we only have 2 and 3 digit positive numbers. IF we try this right now, it will just give us all the numbers, because its looking for the biggest sum you can get from a subarray of numbers. The maximum subarray. But in our case, the maximum subarray is the entire array, because there are no negative numbers to avoid. Each month, even the months with poor sales, add to the total number of sales. 
+
+If we want this algorithim to work, a simple way to make it so that our data set of 2 and 3 figure positive numbers is now relatively similar amount of positive and negative numbers. A quick and dirty way to do this is to find the mean, and subtract the mean from each number. Everything less than the mean goes negative, everything greater than the mean goes positive. 
+
+This gives us an improvement on simply outputting all the months. However, let's remember that the algorithim is biased towards finding some not-so-bad negatives separating really high positives, while shaving off any really bad negatives on either end of the subarray. The result? We kick off the last 2 elements, which are especially low and on the end. But we have two high patches of numbers between. It's safe to say that our sales team doesn't want to know that there's a slow seaon to avoid. They don't just want to avoid the worst case, they want it filtered down to only the best few months for an ad campaign. So we have to really punish any subarray that has anything but great numbers. The quick and dirty way to do this is instead of subtracting the average, we can subtract the midpoint of the average and the maximum. 
+
+## how you’ll handle ties, all-negative values, or multiple peak segments.
+
+Ties/multiple peaks: The algorithim cuts off any bad values on the ends of the peak. So if two numbers are both high maximums, it will continue to move out from them until there is no longer a tie. If there are two perfectly symmetrical peaks, it WILL grab all of them. This is a feature, not a bug. It tells our salesteam that there are two seasons that are identically advantageous. 
+
+All-negative values: a typical algorithim would just output the number closest to zero. But if we're in sales, zero is a minimum. If we assume sales can't be negative and that the sales are distributed around a positive number, we will always have a relatively even ratio of negatives to positive. However, if we did have all negatives for whatever reason (maybe they wanted to look at profit instead of sales), this algorithim would still. If production cost was constant, this algorithim would output the same months as it would when only looking at the non-negative sales numbers. 
+
+
+## c. Pseudocode + Complexity:
+Provide pseudocode for your algorithm and analyze its time and space complexity using Big-O notation. Target an O(N) time solution.
+
+
+3d. Limitations:
+Discuss limitations of your approach (e.g., sensitivity to noise/outliers, tie-breaking choices, single peak assumption, lack of seasonality handling, etc.) and when a different method might be preferable.
+
+
+
 ```c++
 #include <iostream>
 #include <vector>
