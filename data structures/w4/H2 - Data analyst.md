@@ -185,8 +185,7 @@ int main() {
 <img width="458" height="348" alt="image" src="https://github.com/user-attachments/assets/251caed7-ba72-4b57-af12-455d8449a45f" />
 
 
-This gives us an improvement on simply outputting all the months. However, let's remember that the algorithim will always kick off low numbers at the ends of an array. The result? We kick off the last 2 elements, which are especially low and on the end. Even though we have spots that are clearly higher than others, our algorithim is greedy and willing to put up with the moderate numbers so that it can grab both of the highest numbers. We want an algorithim that is absolutely addicted to the cream of the crop. We need more bias towards high numbers
-
+This gives us an improvement on simply outputting all the months. However, let's remember that the algorithim will always kick off negative (in our case, below average) numbers at the ends of an array. The result? We kick off the last 2 elements, which are especially low and on the end. Even though we have spots that are clearly higher than others, our algorithim is willing to put up with the moderate numbers, which are still mostly above 100, so that it can grab both of the highest numbers. We want an algorithim that is absolutely addicted to the cream of the crop. We need more bias towards high numbers
 
 It's safe to say that our sales team doesn't just want to know that there's a slow seaon at the beginning or end of the year. So we have to really punish any subarray that has anything but the best numbers. The quick and dirty way to do this is instead of subtracting the average, we can subtract the midpoint of the average and the maximum. 
 
