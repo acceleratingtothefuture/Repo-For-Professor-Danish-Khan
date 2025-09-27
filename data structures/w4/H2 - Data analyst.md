@@ -42,7 +42,67 @@ Element: 6. Value: 5. The big payoff! 5 is not better than 4 - 2 - 1 + 1 + 5 so 
 
 Element: 7. Value: -3. -3 is certainly not better than 4 - 2 - 1 + 1 + 5 - 3. So our current sub array is [4, -2, -1, 1, 5, -3]. But this -3 makes it worse than our best, which is [4, -2, -1, 1, 5]. Therefore [4, -2, -1, 1, 5] is the max sub array with a sum of 7.
 
-## Making this algorithim work for sales data 
+## Implementing this algorithim 
+
+Let's code this algorithim into some C++ that takes each month's data as input, and returns the longest string as output. 
+
+```c++
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Function to find max subarray sum and its start/end indices
+void maxSubarray(int nums[], int size, int& maxSum, int& start, int& end) {
+    maxSum = nums[0]; // Start with first element as max sum
+    int currentSum = nums[0]; // Current sum being calculated
+    start = 0; // Start index of max subarray
+    end = 0; // End index of max subarray
+    int tempStart = 0; // Temporary start index for current subarray
+
+    for (int i = 1; i < size; i++) {
+        // If current element is larger than sum so far, start new subarray
+        if (nums[i] > currentSum + nums[i]) {
+            currentSum = nums[i];
+            tempStart = i;
+        } else {
+            currentSum = currentSum + nums[i];
+        }
+
+        // Update max sum and indices if current sum is larger
+        if (currentSum > maxSum) {
+            maxSum = currentSum;
+            start = tempStart;
+            end = i;
+        }
+    }
+}
+
+int main() {
+    // Array for 12 months of data
+    int data[12];
+    // Array for month names
+    string months[12] = {"January", "February", "March", "April", "May", "June",
+                         "July", "August", "September", "October", "November", "December"};
+
+    // Get input for each month
+    cout << "Enter integer data for each month:" << endl;
+    for (int i = 0; i < 12; i++) {
+        cout << months[i] << ": ";
+        cin >> data[i];
+    }
+
+    // Find max subarray sum and indices
+    int maxSum, startMonth, endMonth;
+    maxSubarray(data, 12, maxSum, startMonth, endMonth);
+
+    // Print results
+    cout << "\nMaximum subarray sum: " << maxSum << endl;
+    cout << "From " << months[startMonth] << " to " << months[endMonth] << endl;
+
+    return 0;
+}
+```
+
 If you haven't noticed, the main problem with this algorithim is that it is basically just looking for the patches of positive numbers that can best balance out the negative numbers between them (i.e the highest positive numbers separated by the least amount of negativity i.e as few elements of negative numbers as close to zero as possible). 
 
 In other words, this algorithim expects a relative even distribution, perhaps uniform or normal, of positive and negative numbers. This is terrible for our sales data because we only have 2 and 3 digit positive numbers. IF we try this right now, it will just give us all the numbers, because its looking for the biggest sum you can get from a subarray of numbers. The maximum subarray. But in our case, the maximum subarray is the entire array, because there are no negative numbers to avoid. Each month, even the months with poor sales, add to the total number of sales. 
