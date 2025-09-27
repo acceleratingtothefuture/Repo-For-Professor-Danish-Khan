@@ -110,7 +110,6 @@ In other words, this algorithim expects a relative even distribution, perhaps un
 If we want this algorithim to work, a simple way to make it so that our data set of 2 and 3 figure positive numbers is now relatively similar amount of positive and negative numbers. A quick and dirty way to do this is to find the mean, and subtract the mean from each number. Everything less than the mean goes negative, everything greater than the mean goes positive. 
 
 ```c++
-```cpp
 #include <iostream>
 #include <string>
 using namespace std;
@@ -162,6 +161,80 @@ int main() {
     } //NEW!
     double average = sum / 12; //NEW!
 
+    // Transform data by subtracting average //NEW!
+    int transformed[12]; //NEW!
+    for (int i = 0; i < 12; i++) { //NEW!
+        transformed[i] = (int)(data[i] - average); //NEW! // Convert to int
+    } //NEW!
+
+    // Find max subarray sum and indices
+    int maxSum, startMonth, endMonth;
+    maxSubarray(transformed, 12, maxSum, startMonth, endMonth); //NEW! (modified to use transformed data)
+
+    // Print results
+    cout << "\nAverage of input data: " << average << endl; //NEW!
+    cout << "Maximum subarray sum (on transformed data): " << maxSum << endl; //NEW! (modified to indicate transformed data)
+    cout << "From " << months[startMonth] << " to " << months[endMonth] << endl;
+
+    return 0;
+}
+```
+
+
+This gives us an improvement on simply outputting all the months. However, let's remember that the algorithim is biased towards finding some not-so-bad negatives separating really high positives, while shaving off any really bad negatives on either end of the subarray. The result? We kick off the last 2 elements, which are especially low and on the end. But we have two high patches of numbers between. It's safe to say that our sales team doesn't want to know that there's a slow seaon to avoid. They don't just want to avoid the worst case, they want it filtered down to only the best few months for an ad campaign. So we have to really punish any subarray that has anything but great numbers. The quick and dirty way to do this is instead of subtracting the average, we can subtract the midpoint of the average and the maximum. 
+
+```C++
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Function to find max subarray sum and its start/end indices
+void maxSubarray(int nums[], int size, int& maxSum, int& start, int& end) {
+    maxSum = nums[0]; // Start with first element as max sum
+    int currentSum = nums[0]; // Current sum being calculated
+    start = 0; // Start index of max subarray
+    end = 0; // End index of max subarray
+    int tempStart = 0; // Temporary start index for current subarray
+
+    for (int i = 1; i < size; i++) {
+        // If current element is larger than sum so far, start new subarray
+        if (nums[i] > currentSum + nums[i]) {
+            currentSum = nums[i];
+            tempStart = i;
+        } else {
+            currentSum = currentSum + nums[i];
+        }
+
+        // Update max sum and indices if current sum is larger
+        if (currentSum > maxSum) {
+            maxSum = currentSum;
+            start = tempStart;
+            end = i;
+        }
+    }
+}
+
+int main() {
+    // Array for 12 months of data
+    int data[12];
+    // Array for month names
+    string months[12] = {"January", "February", "March", "April", "May", "June",
+                         "July", "August", "September", "October", "November", "December"};
+
+    // Get input for each month
+    cout << "Enter integer data for each month:" << endl;
+    for (int i = 0; i < 12; i++) {
+        cout << months[i] << ": ";
+        cin >> data[i];
+    }
+
+    // Calculate average
+    double sum = 0;
+    for (int i = 0; i < 12; i++) {
+        sum = sum + data[i];
+    }
+    double average = sum / 12;
+
     // Find maximum value //NEW!
     int maxValue = data[0]; //NEW!
     for (int i = 0; i < 12; i++) { //NEW!
@@ -181,22 +254,19 @@ int main() {
 
     // Find max subarray sum and indices
     int maxSum, startMonth, endMonth;
-    maxSubarray(transformed, 12, maxSum, startMonth, endMonth); //NEW! (modified to use transformed data)
+    maxSubarray(transformed, 12, maxSum, startMonth, endMonth);
 
     // Print results
-    cout << "\nAverage of input data: " << average << endl; //NEW!
+    cout << "\nAverage of input data: " << average << endl;
     cout << "Maximum value of input data: " << maxValue << endl; //NEW!
     cout << "Midpoint (avg + max)/2: " << midpoint << endl; //NEW!
-    cout << "Maximum subarray sum (on transformed data): " << maxSum << endl; //NEW! (modified to indicate transformed data)
+    cout << "Maximum subarray sum (on transformed data): " << maxSum << endl;
     cout << "From " << months[startMonth] << " to " << months[endMonth] << endl;
 
     return 0;
 }
 ```
 
-```
-
-This gives us an improvement on simply outputting all the months. However, let's remember that the algorithim is biased towards finding some not-so-bad negatives separating really high positives, while shaving off any really bad negatives on either end of the subarray. The result? We kick off the last 2 elements, which are especially low and on the end. But we have two high patches of numbers between. It's safe to say that our sales team doesn't want to know that there's a slow seaon to avoid. They don't just want to avoid the worst case, they want it filtered down to only the best few months for an ad campaign. So we have to really punish any subarray that has anything but great numbers. The quick and dirty way to do this is instead of subtracting the average, we can subtract the midpoint of the average and the maximum. 
 
 ## how you’ll handle ties, all-negative values, or multiple peak segments.
 
