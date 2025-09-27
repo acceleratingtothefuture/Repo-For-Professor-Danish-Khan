@@ -274,7 +274,7 @@ int main() {
 ```
 <img width="462" height="397" alt="image" src="https://github.com/user-attachments/assets/5f4097ed-fc0f-41d4-a1c7-ea37c8e17b26" />
 
-
+Now we have QUALITY output! Our algorithim has a real soft spot for the maximum now, kicking out anything that doesn't get close to that. This is probably ideal. If you 
 
 ## a. part 2. "how you’ll handle ties, all-negative values, or multiple peak segments."
 
