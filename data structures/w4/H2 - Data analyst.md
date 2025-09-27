@@ -373,6 +373,10 @@ Space Complexity: O(N). Requires O(N) space for the data array, transformed arra
 ## 3d. Limitations:
 Discuss limitations of your approach (e.g., sensitivity to noise/outliers, tie-breaking choices, single peak assumption, lack of seasonality handling, etc.) and when a different method might be preferable.
 
-This algorithim is highly sensitive to outliers because it's based on 
+This algorithim is highly sensitive to outliers because it's based on closeness to the max. If the sales team wants to go broader, we should implement some function that chooses a specific percentile. Even better: a sliding bar that lets them choose from 50th percentile to maximum. They could drag the slider up until they got what they were looking for: as many or few months as they wanted. 
+
+The tie breaking is solid. Because its constantly looking at the previous vs. the latest element, it will break a tie by looking at what comes before and after the tied months. I discussed this in more detail in a. part 2. 
+There is nothing here that takes seasonality into consideration, but a simple function could deduct say 20% during holiday shopping season. 
+A different method would be preferrable when you want an exact list of the best N months. Since the program is only looking at 12 elements, we could write something which requires much more compute: something that outputs the best 2 in a row, the best 3 in a row, etc. Instead of sliding through once, we would slide through multiple times looking for every combination of 2, 3, 4 etc. elements. 
 
 
