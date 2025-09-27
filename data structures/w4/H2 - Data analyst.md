@@ -15,6 +15,8 @@ We need an algorithim that traverses an array of sales and makes new calculation
 
 Kadane's algorithm is a highly efficient and popular solution for this maximum subarray problem, (https://en.wikipedia.org/wiki/Maximum_subarray_problem). The algorithm works by iterating through the array and, at each step, making a simple decision: it compares the current element alone to the sum of the current element plus the existing subarray sum. If the current element by itself is greater, it means the previous subarray sum is dragging it down (probably because it's negative), so the algorithm starts a new subarray from this element. Otherwise, it extends the current subarray by adding the element. After each step, it checks if the current subarray sum is greater than the highest sum found so far and updates the maximum if needed. Because we are constantly deciding on a new current and a new best, we can get the maximum subarray sum in a single pass.
 
+Basically, it looks at each number and says "Am I better off adding this to my current pile, or starting a brand new current pile from just this new number?" And then it asks "which pile was the highest overall?" It outputs that highest pile. 
+
 Let's see the idea for this with an example
 
 <img width="564" height="345" alt="image" src="https://github.com/user-attachments/assets/8ccbc939-8336-4ba3-9c0d-62b3d961a7cd" />
