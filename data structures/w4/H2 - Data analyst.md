@@ -42,9 +42,9 @@ Element: 6. Value: 5. The big payoff! 5 is not better than 4 - 2 - 1 + 1 + 5 so 
 
 Element: 7. Value: -3. -3 is certainly not better than 4 - 2 - 1 + 1 + 5 - 3. So our current sub array is [4, -2, -1, 1, 5, -3]. But this -3 makes it worse than our best, which is [4, -2, -1, 1, 5]. Therefore [4, -2, -1, 1, 5] is the max sub array with a sum of 7.
 
-## Implementing this algorithim 
+## b. Implementation (C++):
 
-Let's code this algorithim into some C++ that takes each month's data as input, and returns the longest string as output. 
+Let's code this algorithim into some C++ that takes each month's data as input, and returns the max sum array as output. 
 
 ```c++
 #include <iostream>
