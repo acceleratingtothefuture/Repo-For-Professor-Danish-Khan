@@ -1,6 +1,6 @@
 # H2 - Data analyst
 
-Video explanation: 
+Video explanation: https://youtu.be/cwt5s6aWeVk
 
 You are a data analyst for a company that sells residential computers. The manager shared with you a dataset of the year 2023 sales.
 
