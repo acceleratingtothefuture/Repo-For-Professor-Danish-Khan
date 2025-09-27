@@ -8,19 +8,23 @@ You are a data analyst for a company that sells residential computers. The manag
 A manager is planning an advertising campaign and needs to identify the stretch of consecutive months with the highest total sales. The goal is to target ads immediately before and after that peak run of months.
 
 
-** a. Approach (no code or pseudocode):
-Describe, in plain language, how you would determine which consecutive months produce the highest total sales. Clearly state the inputs, the desired output (start month, end month, and total), and how you’ll handle ties, all-negative values, or multiple peak segments.
+# ** a. Approach (no code or pseudocode):
+"Describe, in plain language, how you would determine which consecutive months produce the highest total sales. Clearly state the inputs, the desired output (start month, end month, and total), and how you’ll handle ties, all-negative values, or multiple peak segments."
 
 We need an algorithim that traverses an array of sales and makes new calculations with each element. This will be the fastest. By doing a live algorithim to find the best possible subarray based on what we've seen each time, we can come to a conclusion through only one traversal through the array, hopefully giving it O(N) run time. 
 
 An effecient and popular algorithim like this is one that compares the current value to the current subarray one is on. If the new value in itself is greater than its sum with the current subarray, then the current subarray is very negative and should be discarded. It makes the new current subarray starting with this new element. Otherwise, if the current subarray is increaed by adding this element, it just adds the element to the current subarray. Once it is on a new subarray, it compares it to the highest valued subarray seen so far. If this one is the greatest, it sets it as that. 
 
 Let's see the idea for this with an example
+
 <img width="564" height="345" alt="image" src="https://github.com/user-attachments/assets/8ccbc939-8336-4ba3-9c0d-62b3d961a7cd" />
+
 credit: https://media.geeksforgeeks.org/wp-content/cdn-uploads/kadane-Algorithm.png
 
 
+
 Here is the algorithim's thought process for each element:
+
 
 Element: 0. Value: -2. This is the only element we've seen so far. So by default, we will set it as the current subarray and the max subarray. 
 
@@ -38,7 +42,7 @@ Element: 6. Value: 5. The big payoff! 5 is not better than 4 - 2 - 1 + 1 + 5 so 
 
 Element: 7. Value: -3. -3 is certainly not better than 4 - 2 - 1 + 1 + 5 - 3. So our current sub array is [4, -2, -1, 1, 5, -3]. But this -3 makes it worse than our best, which is [4, -2, -1, 1, 5]. Therefore [4, -2, -1, 1, 5] is the max sub array with a sum of 7.
 
-
+## Making this algorithim work for sales data 
 If you haven't noticed, the main problem with this algorithim is that it is basically just looking for the patches of positive numbers that can best balance out the negative numbers between them (i.e the highest positive numbers separated by the least amount of negativity i.e as few elements of negative numbers as close to zero as possible). 
 
 In other words, this algorithim expects a relative even distribution, perhaps uniform or normal, of positive and negative numbers. This is terrible for our sales data because we only have 2 and 3 digit positive numbers. IF we try this right now, it will just give us all the numbers, because its looking for the biggest sum you can get from a subarray of numbers. The maximum subarray. But in our case, the maximum subarray is the entire array, because there are no negative numbers to avoid. Each month, even the months with poor sales, add to the total number of sales. 
