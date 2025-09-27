@@ -8,8 +8,8 @@ You are a data analyst for a company that sells residential computers. The manag
 A manager is planning an advertising campaign and needs to identify the stretch of consecutive months with the highest total sales. The goal is to target ads immediately before and after that peak run of months.
 
 
-# ** a. Approach (no code or pseudocode):
-"Describe, in plain language, how you would determine which consecutive months produce the highest total sales. Clearly state the inputs, the desired output (start month, end month, and total), and how you’ll handle ties, all-negative values, or multiple peak segments."
+# a. part 1 Approach (no code or pseudocode):
+"Describe, in plain language, how you would determine which consecutive months produce the highest total sales. Clearly state the inputs, the desired output (start month, end month, and total)."
 
 We need an algorithim that traverses an array of sales and makes new calculations with each element. This will be the fastest. By doing a live algorithim to find the best possible subarray based on what we've seen each time, we can come to a conclusion through only one traversal through the array, hopefully giving it O(N) run time. 
 
@@ -268,7 +268,7 @@ int main() {
 ```
 
 
-## how you’ll handle ties, all-negative values, or multiple peak segments.
+## a. part 2. "how you’ll handle ties, all-negative values, or multiple peak segments."
 
 Ties/multiple peaks: The algorithim cuts off any bad values on the ends of the peak. So if two numbers are both high maximums, it will continue to move out from them until there is no longer a tie. If there are two perfectly symmetrical peaks, it WILL grab all of them. This is a feature, not a bug. It tells our salesteam that there are two seasons that are identically advantageous. 
 
