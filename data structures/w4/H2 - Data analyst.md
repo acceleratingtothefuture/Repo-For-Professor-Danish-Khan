@@ -106,7 +106,6 @@ int main() {
 <img width="362" height="331" alt="image" src="https://github.com/user-attachments/assets/e474e0c5-e980-4c23-bf67-884055a16b90" />
 
 
-
 The problem with this algorithim is that it is basically just looking for the patches of positive numbers that can best balance out the negative numbers between them (i.e the highest positive numbers separated by the least amount of negativity i.e as few elements of negative numbers as close to zero as possible). 
 
 In other words, this algorithim expects a healthy mixture of positive and negative numbers. With our data, it ust outputs the entire array, because its looking for the biggest sum you can get from a consecutive subarray of numbers. Obviously with all positive numbers, every element you include in the sum increases it. Our maximum subarray is the entire array, because there are no negative numbers to avoid. Each month, even the months with poor sales, add to the total number of sales. 
@@ -186,7 +185,10 @@ int main() {
 <img width="458" height="348" alt="image" src="https://github.com/user-attachments/assets/251caed7-ba72-4b57-af12-455d8449a45f" />
 
 
-This gives us an improvement on simply outputting all the months. However, let's remember that the algorithim is biased towards finding some not-so-bad negatives separating really high positives, while shaving off any really bad negatives on either end of the subarray. The result? We kick off the last 2 elements, which are especially low and on the end. But we have two high patches of numbers between. It's safe to say that our sales team doesn't want to know that there's a slow seaon to avoid. They don't just want to avoid the worst case, they want it filtered down to only the best few months for an ad campaign. So we have to really punish any subarray that has anything but great numbers. The quick and dirty way to do this is instead of subtracting the average, we can subtract the midpoint of the average and the maximum. 
+This gives us an improvement on simply outputting all the months. However, let's remember that the algorithim will always kick off low numbers at the ends of an array. The result? We kick off the last 2 elements, which are especially low and on the end. Even though we have spots that are clearly higher than others, our algorithim is greedy and willing to put up with the moderate numbers so that it can grab both of the highest numbers. We want an algorithim that is absolutely addicted to the cream of the crop. We need more bias towards high numbers
+
+
+It's safe to say that our sales team doesn't just want to know that there's a slow seaon at the beginning or end of the year. So we have to really punish any subarray that has anything but the best numbers. The quick and dirty way to do this is instead of subtracting the average, we can subtract the midpoint of the average and the maximum. 
 
 ```C++
 #include <iostream>
