@@ -290,9 +290,13 @@ Provide pseudocode for your algorithm and analyze its time and space complexity 
 
 Pseudocode:
 months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+
 N = 12
+
 data = array of size N
+
 for i from 0 to N-1:
+
 read data[i] for months[i]
 sum = 0
 for each x in data:
