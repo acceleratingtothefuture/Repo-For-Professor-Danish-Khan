@@ -317,7 +317,8 @@ output maxVal
 output midpoint
 output global_max as max subarray sum
 output months[start] to months[end]
-Time Complexity: O(N) - Each step (input, sum/avg calculation, max finding, transformation, and Kadane's algorithm) involves a single pass over the array of size N.
+
+Time Complexity: O(N) - Each step (input, sum/avg calculation, max finding, transformation, and Kadane's algorithm) involves a single pass over the array of size N. We NEVER have any inner loops that traverse the other elements for each element. We go through once, doing live calculations and saves. 
 Space Complexity: O(N) - Requires O(N) space for the data array, transformed array, and months list (though months is fixed-size).
 
 
