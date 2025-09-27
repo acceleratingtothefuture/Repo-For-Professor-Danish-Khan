@@ -191,7 +191,7 @@ int main() {
 
 This gives us an improvement on simply outputting all the months. However, let's remember that the algorithim will always kick off negative (in our case, below average) numbers at the ends of an array. The result? We kick off the last 2 elements, which are especially low and on the end. Even though we have spots that are clearly higher than others, our algorithim is willing to put up with the moderate numbers, which are still mostly above 100, so that it can grab both of the highest numbers. We want an algorithim that is absolutely addicted to the cream of the crop. We need more bias towards high numbers
 
-It's safe to say that our sales team doesn't just want to know that there's a slow seaon at the beginning or end of the year. So we have to really punish any subarray that has anything but the best numbers. The quick and dirty way to do this is instead of subtracting the average, we can subtract the midpoint of the average and the maximum. 
+It's safe to say that our sales team doesn't just want to know that there's a slow seaon at the beginning or end of the year. So we have to really punish any subarray that has anything but the best numbers. The quick and dirty way to do this is instead of subtracting the average, we can subtract the midpoint of the average and the maximum. This will turn anything less than the midpoint of the average and the max into a negative number.
 
 ```C++
 #include <iostream>
