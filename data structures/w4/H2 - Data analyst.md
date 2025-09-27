@@ -13,14 +13,13 @@ A manager is planning an advertising campaign and needs to identify the stretch 
 
 We need an algorithim that traverses an array of sales and makes new calculations with each element. This will be the fastest. By doing a live algorithim to find the best possible subarray based on what we've seen each time, we can come to a conclusion through only one traversal through the array, hopefully giving it O(N) run time. 
 
-An effecient and popular algorithim like this is one that compares the current value to the current subarray one is on. If the new value in itself is greater than its sum with the current subarray, then the current subarray is very negative and should be discarded. It makes the new current subarray starting with this new element. Otherwise, if the current subarray is increaed by adding this element, it just adds the element to the current subarray. Once it is on a new subarray, it compares it to the highest valued subarray seen so far. If this one is the greatest, it sets it as that. 
+Kadane's algorithm is a highly efficient and popular solution for this maximum subarray problem, (https://en.wikipedia.org/wiki/Maximum_subarray_problem). The algorithm works by iterating through the array and, at each step, making a simple decision: it compares the current element alone to the sum of the current element plus the existing subarray sum. If the current element by itself is greater, it means the previous subarray sum is dragging it down (probably because it's negative), so the algorithm starts a new subarray from this element. Otherwise, it extends the current subarray by adding the element. After each step, it checks if the current subarray sum is greater than the highest sum found so far and updates the maximum if needed. Because we are constantly deciding on a new current and a new best, we can get the maximum subarray sum in a single pass.
 
 Let's see the idea for this with an example
 
 <img width="564" height="345" alt="image" src="https://github.com/user-attachments/assets/8ccbc939-8336-4ba3-9c0d-62b3d961a7cd" />
 
 credit: https://media.geeksforgeeks.org/wp-content/cdn-uploads/kadane-Algorithm.png
-
 
 
 Here is the algorithim's thought process for each element:
