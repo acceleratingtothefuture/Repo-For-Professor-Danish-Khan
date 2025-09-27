@@ -289,6 +289,7 @@ All-negative values: a typical algorithim would just output the number closest t
 Provide pseudocode for your algorithm and analyze its time and space complexity using Big-O notation. Target an O(N) time solution.
 
 Pseudocode:
+
 months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
 N = 12
@@ -298,45 +299,80 @@ data = array of size N
 for i from 0 to N-1:
 
 read data[i] for months[i]
+
 sum = 0
+
 for each x in data:
+
 sum += x
+
 avg = sum / N
+
 maxVal = data[0]
+
 for each x in data:
+
 if x > maxVal:
+
 maxVal = x
+
 midpoint = (avg + maxVal) / 2
+
 transformed = array of size N
+
 for i from 0 to N-1:
+
 transformed[i] = floor(data[i] - midpoint)  // or integer cast
+
+
 // Kadane's algorithm
+
 current_max = transformed[0]
+
 global_max = transformed[0]
+
 start = 0
+
 end = 0
 temp_start = 0
+
 for i from 1 to N-1:
+
 if transformed[i] > current_max + transformed[i]:
+
 current_max = transformed[i]
+
 temp_start = i
+
 else:
+
 current_max += transformed[i]
+
 if current_max > global_max:
+
 global_max = current_max
+
 start = temp_start
+
 end = i
+
 output avg
+
 output maxVal
+
 output midpoint
+
 output global_max as max subarray sum
+
 output months[start] to months[end]
 
-Time Complexity: O(N) - Each step (input, sum/avg calculation, max finding, transformation, and Kadane's algorithm) involves a single pass over the array of size N. We NEVER have any inner loops that traverse the other elements for each element. We go through once, doing live calculations and saves. 
-Space Complexity: O(N) - Requires O(N) space for the data array, transformed array, and months list (though months is fixed-size).
+Time Complexity: O(N). Each step (input, sum/avg calculation, max finding, transformation, and Kadane's algorithm) involves a single pass over the array of size N. We NEVER have any inner loops that traverse the other elements for each element. We go through once, doing live calculations and saves. 
+Space Complexity: O(N). Requires O(N) space for the data array, transformed array, and months list (though months is fixed-size).
 
 
 ## 3d. Limitations:
 Discuss limitations of your approach (e.g., sensitivity to noise/outliers, tie-breaking choices, single peak assumption, lack of seasonality handling, etc.) and when a different method might be preferable.
+
+This algorithim is highly sensitive to outliers because it's based on 
 
 
