@@ -24,7 +24,19 @@ Here is the algorithim's thought process for each element:
 
 Element: 0. Value: -2. This is the only element we've seen so far. So by default, we will set it as the current subarray and the max subarray. 
 
-Element: 1. Value: -3. -3 by itself is better than -2 and -3. If we find better numbers, we want to discard that -2 from the beginning of it so that we can find So our new current subarray will be -3. 
+Element: 1. Value: -3. -3 by itself is better than -2 and -3. If we find better numbers, we want to discard that -2 from the beginning of it because an an extra negative is useless at the start. So our new current subarray will be -3. 
+
+Element: 2. Value: 4. 4 by itself is much better than the sum of 4 and -3. So our new current, and our new best is now just 4.
+
+Element 3: Value -1. -1 by itself is not better than the sum of 4 and -1. So we'll hold onto it in hopes of getting something better with out 4. The sub array is now [4, -1]. But our best is still [4]. 
+
+Element 4: Value: -2. -2 by itself is not better than 4 - 1 - 2 = 1. In other words, the 4 is so good that even if we subtract 3 from it, we still have a 1 so we'll hold on to the -2. Our current sub array is now [4, -1 , -2]. Our best subarray is [4]. 
+
+Element: 5. Value: 1. 1 is not better than 4 - 2 - 1 + 1. so we'll tack it on Our current sub array is now [4, -2, -1, 1]. Our best sub array is [4].
+
+Element: 6. Value: 5. The big payoff! 5 is not better than 4 - 2 - 1 + 1 + 5 so we'll tack it on. Our current sub array is now [4, -2, -1, 1, 5]. This is our best sub array, with a sum of 7! 
+
+Element: 7. Value: -3. -3 is certainly not better than 4 - 2 - 1 + 1 + 5 - 3. So our current sub array is [4, -2, -1, 1, 5, -3]. But this -3 makes it worse than our best, which is [4, -2, -1, 1, 5]. Therefore [4, -2, -1, 1, 5] is the max sub array with a sum of 7.
 
 
 If you haven't noticed, the main problem with this algorithim is that it is basically just looking for the patches of positive numbers that can best balance out the negative numbers between them (i.e the highest positive numbers separated by the least amount of negativity i.e as few elements of negative numbers as close to zero as possible). 
@@ -44,6 +56,48 @@ All-negative values: a typical algorithim would just output the number closest t
 
 ## c. Pseudocode + Complexity:
 Provide pseudocode for your algorithm and analyze its time and space complexity using Big-O notation. Target an O(N) time solution.
+
+Pseudocode:
+months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+N = 12
+data = array of size N
+for i from 0 to N-1:
+read data[i] for months[i]
+sum = 0
+for each x in data:
+sum += x
+avg = sum / N
+maxVal = data[0]
+for each x in data:
+if x > maxVal:
+maxVal = x
+midpoint = (avg + maxVal) / 2
+transformed = array of size N
+for i from 0 to N-1:
+transformed[i] = floor(data[i] - midpoint)  // or integer cast
+// Kadane's algorithm
+current_max = transformed[0]
+global_max = transformed[0]
+start = 0
+end = 0
+temp_start = 0
+for i from 1 to N-1:
+if transformed[i] > current_max + transformed[i]:
+current_max = transformed[i]
+temp_start = i
+else:
+current_max += transformed[i]
+if current_max > global_max:
+global_max = current_max
+start = temp_start
+end = i
+output avg
+output maxVal
+output midpoint
+output global_max as max subarray sum
+output months[start] to months[end]
+Time Complexity: O(N) - Each step (input, sum/avg calculation, max finding, transformation, and Kadane's algorithm) involves a single pass over the array of size N.
+Space Complexity: O(N) - Requires O(N) space for the data array, transformed array, and months list (though months is fixed-size).
 
 
 3d. Limitations:
