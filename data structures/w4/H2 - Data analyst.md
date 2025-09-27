@@ -103,11 +103,16 @@ int main() {
 }
 ```
 
-If you haven't noticed, the main problem with this algorithim is that it is basically just looking for the patches of positive numbers that can best balance out the negative numbers between them (i.e the highest positive numbers separated by the least amount of negativity i.e as few elements of negative numbers as close to zero as possible). 
 
-In other words, this algorithim expects a relative even distribution, perhaps uniform or normal, of positive and negative numbers. This is terrible for our sales data because we only have 2 and 3 digit positive numbers. IF we try this right now, it will just give us all the numbers, because its looking for the biggest sum you can get from a subarray of numbers. The maximum subarray. But in our case, the maximum subarray is the entire array, because there are no negative numbers to avoid. Each month, even the months with poor sales, add to the total number of sales. 
+<img width="362" height="331" alt="image" src="https://github.com/user-attachments/assets/e474e0c5-e980-4c23-bf67-884055a16b90" />
 
-If we want this algorithim to work, a simple way to make it so that our data set of 2 and 3 figure positive numbers is now relatively similar amount of positive and negative numbers. A quick and dirty way to do this is to find the mean, and subtract the mean from each number. Everything less than the mean goes negative, everything greater than the mean goes positive. 
+
+
+The problem with this algorithim is that it is basically just looking for the patches of positive numbers that can best balance out the negative numbers between them (i.e the highest positive numbers separated by the least amount of negativity i.e as few elements of negative numbers as close to zero as possible). 
+
+In other words, this algorithim expects a relative even distribution, perhaps uniform or normal, of positive and negative numbers. This is terrible for our sales data because we only have 2 and 3 digit positive numbers. It just just outputs the entire array, because its looking for the biggest sum you can get from a consecutive subarray of numbers. The maximum subarray. But in our case, the maximum subarray is the entire array, because there are no negative numbers to avoid. Each month, even the months with poor sales, add to the total number of sales. 
+
+If we want this algorithim to work, we could turn our data set of 2 and 3 figure positive numbers is now relatively similar amount of positive and negative numbers. A quick and dirty way to do this is to find the mean, and subtract the mean from each number. Everything less than the mean goes negative, everything greater than the mean goes positive. 
 
 ```c++
 #include <iostream>
@@ -179,6 +184,7 @@ int main() {
     return 0;
 }
 ```
+<img width="458" height="348" alt="image" src="https://github.com/user-attachments/assets/251caed7-ba72-4b57-af12-455d8449a45f" />
 
 
 This gives us an improvement on simply outputting all the months. However, let's remember that the algorithim is biased towards finding some not-so-bad negatives separating really high positives, while shaving off any really bad negatives on either end of the subarray. The result? We kick off the last 2 elements, which are especially low and on the end. But we have two high patches of numbers between. It's safe to say that our sales team doesn't want to know that there's a slow seaon to avoid. They don't just want to avoid the worst case, they want it filtered down to only the best few months for an ad campaign. So we have to really punish any subarray that has anything but great numbers. The quick and dirty way to do this is instead of subtracting the average, we can subtract the midpoint of the average and the maximum. 
@@ -266,6 +272,8 @@ int main() {
     return 0;
 }
 ```
+<img width="462" height="397" alt="image" src="https://github.com/user-attachments/assets/5f4097ed-fc0f-41d4-a1c7-ea37c8e17b26" />
+
 
 
 ## a. part 2. "how you’ll handle ties, all-negative values, or multiple peak segments."
