@@ -110,9 +110,9 @@ int main() {
 
 The problem with this algorithim is that it is basically just looking for the patches of positive numbers that can best balance out the negative numbers between them (i.e the highest positive numbers separated by the least amount of negativity i.e as few elements of negative numbers as close to zero as possible). 
 
-In other words, this algorithim expects a relative even distribution, perhaps uniform or normal, of positive and negative numbers. This is terrible for our sales data because we only have 2 and 3 digit positive numbers. It just just outputs the entire array, because its looking for the biggest sum you can get from a consecutive subarray of numbers. The maximum subarray. But in our case, the maximum subarray is the entire array, because there are no negative numbers to avoid. Each month, even the months with poor sales, add to the total number of sales. 
+In other words, this algorithim expects a healthy mixture of positive and negative numbers. With our data, it ust outputs the entire array, because its looking for the biggest sum you can get from a consecutive subarray of numbers. Obviously with all positive numbers, every element you include in the sum increases it. Our maximum subarray is the entire array, because there are no negative numbers to avoid. Each month, even the months with poor sales, add to the total number of sales. 
 
-If we want this algorithim to work, we could turn our data set of 2 and 3 figure positive numbers is now relatively similar amount of positive and negative numbers. A quick and dirty way to do this is to find the mean, and subtract the mean from each number. Everything less than the mean goes negative, everything greater than the mean goes positive. 
+If we want this algorithim to work, we could turn our data set of positive numbers into a mixture of positive and negative numvers A quick and dirty way to do this is to find the mean, and subtract the mean from each number. Everything less than the mean goes negative, everything greater than the mean goes positive. 
 
 ```c++
 #include <iostream>
