@@ -45,6 +45,9 @@ int main() {
 
 ## With the help of a figure, explain the problem that occured due to introducing a tombstone to mark the deleted cell. 5 pts
 
+<img width="2044" height="1996" alt="Untitled" src="https://github.com/user-attachments/assets/717f9578-7da4-41cd-bf9e-edde7bad346a" />
+
+
 What tombstones prevent
 If you mark a deleted slot as truly empty, a later search that relies on probing will stop early at that empty slot and falsely conclude a key isn’t present, even if the key was displaced further along. A tombstone says “this spot used to be occupied; keep probing” which preserves correctness. This matches the chapter’s explanation of search, insert, and delete with linear probing and the need for a special marker instead of a plain empty cell.
 
