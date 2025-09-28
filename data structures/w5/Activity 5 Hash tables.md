@@ -37,7 +37,7 @@ unsigned long hash_function(const char* str) {
 }
 
 int main() {
-    const char* name = "YourNameHere";
+    const char* name = "Austin";
     cout << "hash(\"" << name << "\") = " << hash_function(name) << "\n";
 }
 
