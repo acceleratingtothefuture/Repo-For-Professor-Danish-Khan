@@ -1,4 +1,4 @@
-#Activity 5 Hash tables
+# Activity 5 Hash tables
 
 ## Assume you have a simple single-dimensional array array = [200, 400, 100, 50, 350] Linear search will take O(N). Write a code in C++/Python to improve the search operation efficiency from O(N) to O(1). **4 pts **
 
