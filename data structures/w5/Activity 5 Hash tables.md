@@ -51,6 +51,12 @@ int main() {
 
 <img width="2044" height="1996" alt="Untitled" src="https://github.com/user-attachments/assets/67cac77e-8d25-47f6-8805-0c2a313bf15f" />
 
+<img width="2044" height="1996" alt="Untitled" src="https://github.com/user-attachments/assets/56ffe896-eee8-453c-8395-1dd7a84e1724" />
+
+<img width="2044" height="1996" alt="Untitled" src="https://github.com/user-attachments/assets/23eca625-7c05-4bab-8164-6ad64311788c" />
+
+<img width="2044" height="1996" alt="Untitled" src="https://github.com/user-attachments/assets/9bc7b712-f65b-4d4f-b451-33d426ec5393" />
+
 
 
 What tombstones prevent
