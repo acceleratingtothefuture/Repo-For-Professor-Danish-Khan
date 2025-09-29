@@ -1,23 +1,39 @@
 # Activity 5 Hash tables
 
-## Assume you have a simple single-dimensional array array = [200, 400, 100, 50, 350] Linear search will take O(N). Write a code in C++/Python to improve the search operation efficiency from O(N) to O(1). **4 pts **
+## Assume you have a simple single-dimensional array  = [200, 400, 100, 50, 350] Linear search will take O(N). Write a code in C++/Python to improve the search operation efficiency from O(N) to O(1). **4 pts **
 
 ```python
 
-# Build a value -> index table once, then lookups are O(1)
-array = [200, 400, 100, 50, 350]
-index_of = {v: i for i, v in enumerate(array)}  # hash table
+array = [200, 400, 100, 50, 350]  # define our array of values
+index_of = {}  # create an empty dictionary (hash table)
+i = 0  # counter starts at 0
+for v in array:  # loop through each value in the list
+    index_of[v] = i  # hash each element of the array into a key, store that element's index as the value. 
+    i += 1  # increment counter
+
+# resulting dictionary (hash table):
+# {
+#     200: 0,
+#     400: 1,
+#     100: 2,
+#     50: 3,
+#     350: 4
+# }
 
 def contains(x):
     return x in index_of  # O(1) average
+    # Uses Python's hash of x to jump to the correct bucket and check if key exists.
 
 def find_index(x):
     return index_of.get(x, -1)  # O(1) average
+    # Hashes x, goes to the right bucket, and returns the stored index if present.
+    # If the key is missing, return -1 (our chosen default).
+
 
 # examples
-print(contains(100))      # True
-print(find_index(350))    # 4
-print(find_index(999))    # -1
+print(contains(100))      # True. Jump to the 100 bucket. See if it has any values. It does because we made a 100 bucket. It does and it stores the number 2 since we made our dictionary have the keys be our array's eleements and the values be their respective indexes. 
+print(find_index(350))    # 4. Jump to the 350 bucket. See if it has any values. It does because we made a 350 bucket which stored 4. Return that value.  
+print(find_index(999))    # -1. Jump to our 999 bucket. Oh wait. There isn't one! Nothing to return. So default to -1. 
 
 ```
 
@@ -25,20 +41,15 @@ print(find_index(999))    # -1
 
 ```C++
 #include <iostream>
-#include <cstring>
 using namespace std;
-
-#define CAPACITY 50000  // from the tutorial
-
-unsigned long hash_function(const char* str) {
-    unsigned long i = 0;
-    for (int j = 0; str[j]; j++) i += str[j];
-    return i % CAPACITY;
-}
 
 int main() {
     const char* name = "Austin";
-    cout << "hash(\"" << name << "\") = " << hash_function(name) << "\n";
+    int hash = 0;
+    for (int i = 0; name[i] != '\0'; i++) {
+        hash += name[i]; // add up ASCII values of my name 
+    }
+    cout << "Hash of " << name << " = " << hash << endl;
 }
 
 ```
