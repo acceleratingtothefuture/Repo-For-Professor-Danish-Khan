@@ -69,7 +69,6 @@ But tombstones can get messy after awhile. Look at all the tombstones we would h
 
 We can clean up unncessary tombstones. 
 <img width="2044" height="1996" alt="Untitled" src="https://github.com/user-attachments/assets/9bc7b712-f65b-4d4f-b451-33d426ec5393" />
-## 
 
 
 
@@ -79,7 +78,9 @@ We can clean up unncessary tombstones.
 
 
 What tombstones prevent
+
 If you mark a deleted slot as truly empty, a later search that relies on probing will stop early at that empty slot and falsely conclude a key isn’t present, even if the key was displaced further along. A tombstone says “this spot used to be occupied; keep probing” which preserves correctness. This matches the chapter’s explanation of search, insert, and delete with linear probing and the need for a special marker instead of a plain empty cell.
 
 What tombstones cause
+
 They accumulate. Searches must step over them, which lengthens probe sequences and slows down lookups and inserts. With more and more insertions/deletions (and therefore, more and more tombstones), average distance from a record’s home position increases and performance degrades until you periodically rehash to clean out tombstones and pack items back into home positions.
