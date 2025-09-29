@@ -46,11 +46,11 @@ int main() {
 ## With the help of a figure, explain the problem that occured due to introducing a tombstone to mark the deleted cell. 5 pts
 
 Let's understand how a hash function works. Here is how we would see if our array contains the value "Airplane".                                                                                                                                                                                                                                                                                    
-<img width="2044" height="1996" alt="Untitled" src="https://github.com/user-attachments/assets/717f9578-7da4-41cd-bf9e-edde7bad346a" />
+<img width="1022" height="998" alt="Untitled" src="https://github.com/user-attachments/assets/717f9578-7da4-41cd-bf9e-edde7bad346a" />
 ## 
 But what if our hash functions map two distinct inputs to the same output? What if we inserted something at a value, but then later we want to insert something with the same hash funciton output? 
 <div></div>
-<img width="2044" height="1996" alt="Untitled" src="https://github.com/user-attachments/assets/84e29952-3715-4f9c-b9e9-656f2a8e4cd6" />
+<img width="1022" height="998" alt="Untitled" src="https://github.com/user-attachments/assets/84e29952-3715-4f9c-b9e9-656f2a8e4cd6" />
 WAIT! There's a problem. We search for something by getting its hash value and seeing if that spot is empty. And we find other data with the same hash value by starting at what's stored at the hash function, and if we don't find the data. We try looking in the next place. But what if the value of the first spot we check is deleted? The algorithim will see "empty" in the first spot and conclude that the value we are looking for isn't there! 
                         
 <img width="2044" height="1996" alt="Untitled" src="https://github.com/user-attachments/assets/67cac77e-8d25-47f6-8805-0c2a313bf15f" />
