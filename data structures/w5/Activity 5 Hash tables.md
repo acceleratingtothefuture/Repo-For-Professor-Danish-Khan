@@ -46,15 +46,15 @@ int main() {
 ## With the help of a figure, explain the problem that occured due to introducing a tombstone to mark the deleted cell. 5 pts
 
 Let's understand how a hash function works. 
-
+<div></div>
 <img width="2044" height="1996" alt="Untitled" src="https://github.com/user-attachments/assets/717f9578-7da4-41cd-bf9e-edde7bad346a" />
-
-
-
-But what if our hash functions map two distinct inputs to the same output? 
-
-
+<div></div><div></div><div></div>
+But what if our hash functions map two distinct inputs to the same output? What if we inserted something at a value, but then later we want to insert something with the same hash funciton output? 
+<div></div>
 <img width="2044" height="1996" alt="Untitled" src="https://github.com/user-attachments/assets/84e29952-3715-4f9c-b9e9-656f2a8e4cd6" />
+
+
+
 
 
 WAIT! There's a problem. We search for something by getting its hash value and seeing if that spot is empty. And we find other data with the same hash value by starting at what's stored at the hash function, and if we don't find the data. We try looking in the next place. But what if the value of the first spot we check is deleted? The algorithim will see "empty" in the first spot and conclude that the value we are looking for isn't there! 
@@ -63,18 +63,24 @@ WAIT! There's a problem. We search for something by getting its hash value and s
 
 
 
-To stop from seeing that the first spot is empty and giving up, we can put a "Tombstone" in place of a value we want to delete. That way, we get rid of the value from the list, but we also,
+To stop from seeing that the first spot is empty and giving up, we can put a "Tombstone" in place of a value we want to delete. That way, we get rid of the value from the list, but we also don't give the false impression that nothing else with the same hash output is there. 
 <img width="2044" height="1996" alt="Untitled" src="https://github.com/user-attachments/assets/56ffe896-eee8-453c-8395-1dd7a84e1724" />
 
-
-
-
+<div></div>
+<div></div>
+<div></div>
+But tombstones can get messy after awhile. Look at all the tombstones we would have to go through to search for "Frog". 
 <img width="2044" height="1996" alt="Untitled" src="https://github.com/user-attachments/assets/23eca625-7c05-4bab-8164-6ad64311788c" />
 
 
 
 
+
+We can clean up unncessary tombstones. 
 <img width="2044" height="1996" alt="Untitled" src="https://github.com/user-attachments/assets/9bc7b712-f65b-4d4f-b451-33d426ec5393" />
+
+
+
 
 
 
