@@ -45,7 +45,7 @@ print(find_index(999))    # -1. Jump to our 999 bucket. Oh wait. There isn't one
 using namespace std;
 
 int main() {
-    const char* name = "Austin";
+    const char* name = "Austin"; // point the the beginning of my name string
     int hash = 0;
     for (int i = 0; name[i] != '\0'; i++) {
         hash += name[i]; // add up ASCII values of my name 
