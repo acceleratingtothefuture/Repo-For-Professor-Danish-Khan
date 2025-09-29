@@ -22,12 +22,12 @@ for v in array:  # loop through each value in the list
 
 def contains(x):
     return x in index_of  # O(1) average
-    # Uses Python's hash of x to jump to the correct bucket and check if key exists.
+    # jump to the inputted bucket. 
 
 def find_index(x):
     return index_of.get(x, -1)  # O(1) average
     # Hashes x, goes to the right bucket, and returns the stored index if present.
-    # If the key is missing, return -1 (our chosen default).
+    # if the key is missing, return -1 (our chosen default).
 
 
 # examples
