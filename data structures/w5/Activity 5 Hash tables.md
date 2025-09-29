@@ -45,17 +45,39 @@ int main() {
 
 ## With the help of a figure, explain the problem that occured due to introducing a tombstone to mark the deleted cell. 5 pts
 
+Let's understand how a hash function works. 
+
 <img width="2044" height="1996" alt="Untitled" src="https://github.com/user-attachments/assets/717f9578-7da4-41cd-bf9e-edde7bad346a" />
+
+
+
+But what if our hash functions map two distinct inputs to the same output? 
+
 
 <img width="2044" height="1996" alt="Untitled" src="https://github.com/user-attachments/assets/84e29952-3715-4f9c-b9e9-656f2a8e4cd6" />
 
+
+WAIT! There's a problem. We search for something by getting its hash value and seeing if that spot is empty. And we find other data with the same hash value by starting at what's stored at the hash function, and if we don't find the data. We try looking in the next place. But what if the value of the first spot we check is deleted? The algorithim will see "empty" in the first spot and conclude that the value we are looking for isn't there! 
+
 <img width="2044" height="1996" alt="Untitled" src="https://github.com/user-attachments/assets/67cac77e-8d25-47f6-8805-0c2a313bf15f" />
 
+
+
+To stop from seeing that the first spot is empty and giving up, we can put a "Tombstone" in place of a value we want to delete. That way, we get rid of the value from the list, but we also,
 <img width="2044" height="1996" alt="Untitled" src="https://github.com/user-attachments/assets/56ffe896-eee8-453c-8395-1dd7a84e1724" />
+
+
+
 
 <img width="2044" height="1996" alt="Untitled" src="https://github.com/user-attachments/assets/23eca625-7c05-4bab-8164-6ad64311788c" />
 
+
+
+
 <img width="2044" height="1996" alt="Untitled" src="https://github.com/user-attachments/assets/9bc7b712-f65b-4d4f-b451-33d426ec5393" />
+
+
+
 
 
 
