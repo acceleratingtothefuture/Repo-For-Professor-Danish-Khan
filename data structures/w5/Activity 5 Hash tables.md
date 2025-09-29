@@ -31,7 +31,7 @@ def find_index(x):
 
 
 # examples
-print(contains(100))      # True. Jump to the 100 bucket. See if it has any values. It does because we made a 100 bucket. It does and it stores the number 2 since we made our dictionary have the keys be our array's eleements and the values be their respective indexes. 
+print(contains(100))      # True. Jump to the 100 bucket. See if it has any values. It does because we made a 100 bucket which stores the number 2 since we made our dictionary have the keys be our array's eleements and the values be their respective indices. 
 print(find_index(350))    # 4. Jump to the 350 bucket. See if it has any values. It does because we made a 350 bucket which stored 4. Return that value.  
 print(find_index(999))    # -1. Jump to our 999 bucket. Oh wait. There isn't one! Nothing to return. So default to -1. 
 
