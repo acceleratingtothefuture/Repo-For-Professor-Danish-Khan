@@ -74,6 +74,7 @@ Decrement head (wrapping to the end if head == 1).
 
 Place the new element at Q[head].
 
+
 2. INSERT-BACK
 
 Check for overflow.
@@ -81,6 +82,7 @@ Check for overflow.
 Place the new element at Q[tail].
 
 Increment tail (wrapping to 1 if tail == Q.length).
+
 
 3. DELETE-FRONT
 
@@ -90,6 +92,7 @@ Retrieve Q[head].
 
 Increment head (wrapping to 1 if head == Q.length).
 
+
 4. DELETE-BACK
 
 Check for underflow.
@@ -97,5 +100,6 @@ Check for underflow.
 Decrement tail (wrapping to Q.length if tail == 1).
 
 Retrieve Q[tail].
+
 
 How can we be sure that this is O(1)? As we've seen before, checking overflow and underflow always just involves looking at the index of head and the index of tail. If there are 10 elements, there will be one head and one tail. If there are 10,000 ekements, there will be one head and one tail. Similarly, any insertion or deletion just invovles accessing an element of the array at what is currently pointed to by the head or by the tail. We don't need to shift all the elements. We don't need to loop through anything. We access the head, of which there is always one and only one. We access the tail, of which there is always one and only one. 
