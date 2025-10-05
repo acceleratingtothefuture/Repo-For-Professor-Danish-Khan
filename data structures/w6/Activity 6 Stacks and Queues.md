@@ -10,7 +10,7 @@ Stacks are last in, first out. So to push things we just drop it in the top of t
 
 ## Task 2: Using Figure 18 as a model, in the book Data Structures in C++, illustrate the result of each operation in the sequence ENQUEUE(Q,4), ENQUEUE(Q,1), ENQUEUE(Q,3), DEQUEUE(Q), ENQUEUE(Q,8), and DEQUEUE(Q) on an initially empty queue Q stored in array Q[1...6]  Code is not required. 3 pts
 
-Our head is basically the "first person in line". And the tail is the back of the line. When we start, the head and tail are the same. There is no person to stand behind to go to the back of the line. As elements line up after the head, we push the tail of the queue back. As the element at the head is dequeued, the element that was dequeued imemdiately after them (i.e the next element after the head) now becomes the head of the queue, just like in a regular line. 
+Our head is basically the "first person in line". And the tail where the next person would go in the back of the line. When we start, the head and tail are the same. There is no person to stand behind to go to the back of the line. As elements line up after the head, we push the tail of the queue back. As the element at the head is dequeued, the element that was dequeued imemdiately after them (i.e the next element after the head) now becomes the head of the queue, just like in a regular line. 
 
 <img width="2044" height="2244" alt="Untitled" src="https://github.com/user-attachments/assets/4e20e7fe-8128-408f-917e-2ba0e21610e5" />
 
@@ -28,6 +28,8 @@ else Q.tail = Q.tail + 1
 ```
 <img width="2044" height="1829" alt="Untitled" src="https://github.com/user-attachments/assets/6db00e45-1eba-427e-8aee-e04611de072d" />
 
+As we can see, an overflow either means that head is at position 1 and tail is equal to length. Or it means that tail has wrapped arround and gone back to right below the head, so head == tail + 1. We can check for those. 
+
 ```pseudocode
 if Q.head == Q.tail + 1 or (Q.head == 1 and Q.tail == Q.length)
     report overflow
@@ -41,6 +43,8 @@ else
 
 dequeue: 
 
+This is our current pseudocode for DEQUEUE. 
+
 ```psuedocode
 x = Q[Q.head]
 if Q.head == Q.length
@@ -49,6 +53,8 @@ else Q.head = Q.head + 1
 return x
 ```
 <img width="2044" height="1411" alt="Untitled" src="https://github.com/user-attachments/assets/16021f7e-cbda-4b3b-af5f-00b50baa0e73" />
+
+So we can update our pseudocode to check for head == tail. 
 
 ```pseudocode
 if Q.head == Q.tail
