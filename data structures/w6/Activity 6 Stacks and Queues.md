@@ -66,7 +66,7 @@ else
 
 The four procedures are 1) inserting front 2) inserting back 3) deleting front 4) deleting back. 
 
-1. INSERT-FRONT
+1. INSERT-FRONT. Someone cutting in front of the line. 
 
 Check for overflow (the deque is full if advancing either end would collide).
 
@@ -75,7 +75,7 @@ Decrement head (wrapping to the end if head == 1).
 Place the new element at Q[head].
 
 
-2. INSERT-BACK
+2. INSERT-BACK. Someone getting to the back of the line, like we've already seen in a normal queue. 
 
 Check for overflow.
 
@@ -84,7 +84,7 @@ Place the new element at Q[tail].
 Increment tail (wrapping to 1 if tail == Q.length).
 
 
-3. DELETE-FRONT
+3. DELETE-FRONT. The person at the front of the line is ready. This is how we've already seen a dequeue like a normal line works. 
 
 Check for underflow (empty if head == tail).
 
@@ -93,7 +93,7 @@ Retrieve Q[head].
 Increment head (wrapping to 1 if head == Q.length).
 
 
-4. DELETE-BACK
+4. DELETE-BACK. This is when the last person in line leaves first, just like popping from a stack. 
 
 Check for underflow.
 
