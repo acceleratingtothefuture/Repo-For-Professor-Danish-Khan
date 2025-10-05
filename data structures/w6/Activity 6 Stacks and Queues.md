@@ -21,6 +21,7 @@ if Q.tail == Q.length
     Q.tail = 1
 else Q.tail = Q.tail + 1
 ```
+<img width="2044" height="1829" alt="Untitled" src="https://github.com/user-attachments/assets/6db00e45-1eba-427e-8aee-e04611de072d" />
 
 ```pseudocode
 if Q.head == Q.tail + 1 or (Q.head == 1 and Q.tail == Q.length)
