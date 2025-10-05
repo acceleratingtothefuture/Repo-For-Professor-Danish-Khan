@@ -10,7 +10,7 @@ Stacks are last in, first out. So to push things we just drop it in the top of t
 
 ## Task 2: Using Figure 18 as a model, in the book Data Structures in C++, illustrate the result of each operation in the sequence ENQUEUE(Q,4), ENQUEUE(Q,1), ENQUEUE(Q,3), DEQUEUE(Q), ENQUEUE(Q,8), and DEQUEUE(Q) on an initially empty queue Q stored in array Q[1...6]  Code is not required. 3 pts
 
-Our head is basically the "first person in line". And the tail is the back of the line. When we start, the head and tail are the same. There is no person to stand behind to go to the back of the line. As elements line up after the head, we push the tail of the queue back. 
+Our head is basically the "first person in line". And the tail is the back of the line. When we start, the head and tail are the same. There is no person to stand behind to go to the back of the line. As elements line up after the head, we push the tail of the queue back. As the element at the head is dequeued, the element that was dequeued imemdiately after them (i.e the next element after the head) now becomes the head of the queue, just like in a regular line. 
 
 <img width="2044" height="2244" alt="Untitled" src="https://github.com/user-attachments/assets/4e20e7fe-8128-408f-917e-2ba0e21610e5" />
 
