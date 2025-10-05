@@ -1,4 +1,5 @@
  # Activity 6: Stacks and queues
+ Video explanation: https://youtu.be/dfK8PU4GwiI
 
 
 ## Task 1: Using Figure 17 as a model, in the book Data Structures in C++, illustrate the result of each operation in the sequence, PUSH(S,4), PUSH(S,1), PUSH(S,3), POP(S), PUSH(S,8), and POP(S) on an initially empty stack S  stored in array S[1...6]. ode is not required. 3 pts
