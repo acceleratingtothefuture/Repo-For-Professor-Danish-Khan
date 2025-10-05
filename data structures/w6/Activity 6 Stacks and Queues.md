@@ -43,6 +43,7 @@ if Q.head == Q.length
 else Q.head = Q.head + 1
 return x
 ```
+<img width="2044" height="1411" alt="Untitled" src="https://github.com/user-attachments/assets/16021f7e-cbda-4b3b-af5f-00b50baa0e73" />
 
 ```pseudocode
 if Q.head == Q.tail
@@ -92,4 +93,4 @@ Decrement tail (wrapping to Q.length if tail == 1).
 
 Retrieve Q[tail].
 
-All four take O(1) time because each does only a few pointer updates and at most one array access, no loops or shifting of elements.
+How can we be sure that this is O(1)? As we've seen before, checking overflow and underflow always just involves looking at the index of head and the index of tail. If there are 10 elements, there will be one head and one tail. If there are 10,000 ekements, there will be one head and one tail. Similarly, any insertion or deletion just invovles accessing an element of the array at what is currently pointed to by the head or by the tail. We don't need to shift all the elements. We don't need to loop through anything. We access the head, of which there is always one and only one. We access the tail, of which there is always one and only one. 
