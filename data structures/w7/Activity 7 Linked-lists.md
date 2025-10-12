@@ -1,5 +1,7 @@
 # Activity 7: Linked Lists
 
+Video explanation: https://www.youtube.com/watch?v=MJlrClOwQ28
+
 ## Create a linked list in C++, add nodes and delete nodes at the start of the list.
 
 ```c++
