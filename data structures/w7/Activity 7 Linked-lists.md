@@ -12,11 +12,11 @@ struct Node {
     Node* next;              // a pointer that tells us where the next node is
 };
 
-// create a global pointer called "head" to track the first node in the list
+// create a  pointer called "head" to track the first node in the list
 // right now, the list is empty, so head points to nothing (NULL)
 Node* head = NULL;
 
-// this function inserts a new node at the *beginning* of the linked list
+// this function inserts a new node at the beginning of the linked list
 void insertAtStart(int value) {
 
     Node* newNode = new Node;    // dynamically create a new node on the heap
@@ -27,13 +27,13 @@ void insertAtStart(int value) {
     cout << "Inserted " << value << " at start.\n";  // print confirmation 
 }
 
-// this function deletes the node currently at the *start* of the linked list
+// this function deletes the node currently at the beginning of the linked list
 void deleteAtStart() {
 
     // if the list is empty (head is NULL), there’s nothing to delete
     if (head == NULL) {
         cout << "List is empty. Nothing to delete.\n";  // tell the user there’s nothing to remove
-        return;                                         // exit the function early
+        return;                                      
     }
 
     Node* temp = head;          // temporarily store the current first node so we can delete it later
@@ -53,7 +53,6 @@ void displayList() {
     cout << "\n";               // print a newline for neatness
 }
 
-// main function – this is where the program actually runs
 int main() {
 
     // add three numbers to the start of the list (30 ends up first)
