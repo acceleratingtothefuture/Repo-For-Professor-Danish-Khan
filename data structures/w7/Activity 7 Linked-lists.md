@@ -39,7 +39,6 @@ void deleteAtStart() {
     Node* temp = head;          // temporarily store the current first node so we can delete it later
     head = head->next;          // move the head pointer to the second node (which is now first)
     cout << "Deleted " << temp->data << " from start.\n";  // print what got deleted
-    delete temp;                // actually free the memory for the node we just removed
 }
 
 // this function prints out all the data values in the linked list
