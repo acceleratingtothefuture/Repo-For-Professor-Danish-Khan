@@ -74,7 +74,7 @@ int main() {
     deleteAtStart();            // deletes 10, list becomes empty
     displayList();              // print: (nothing)
 
-    return 0;                   // tell the OS the program finished successfully
+    return 0;                
 }
 
 
