@@ -24,7 +24,7 @@ void insertAtStart(int value) {
     newNode->next = head;        // make this new node point to the old head node
     head = newNode;              // move the head pointer so it now points to this new node
 
-    cout << "Inserted " << value << " at start.\n";  // print confirmation for human eyes
+    cout << "Inserted " << value << " at start.\n";  // print confirmation 
 }
 
 // this function deletes the node currently at the *start* of the linked list
