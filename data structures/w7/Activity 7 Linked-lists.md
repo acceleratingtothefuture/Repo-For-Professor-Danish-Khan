@@ -1,4 +1,4 @@
-# Linked Lists
+# Activity 7: Linked Lists
 
 ## Create a linked list in C++, add nodes and delete nodes at the start of the list.
 
