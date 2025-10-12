@@ -3,8 +3,8 @@
 ## Create a linked list in C++, add nodes and delete nodes at the start of the list.
 
 ```c++
-#include <iostream>          // bring in input/output stuff like cout and endl
-using namespace std;         // so we don’t have to write std:: every time
+#include <iostream>         
+using namespace std;        
 
 // define a "Node" structure, which is the basic building block of the linked list
 struct Node {
