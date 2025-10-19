@@ -1,5 +1,7 @@
 # Activity 8 Binary search trees
 
+Video explanation: 
+
 ## Task 1: Imagine you were to take an empty binary search tree and insert the following sequence of numbers in this order: [1, 5, 9, 2, 4, 10, 6, 3, 8]. Draw a diagram showing what the binary search tree would look like. Remember, the numbers are being inserted in the order presented here.
 
 <img width="2531" height="1996" alt="Untitled" src="https://github.com/user-attachments/assets/6f5b9576-d440-460c-aa0b-091df8e2e5ec" />
