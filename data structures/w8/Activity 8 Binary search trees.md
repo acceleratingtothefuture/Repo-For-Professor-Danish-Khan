@@ -50,7 +50,7 @@ So a balanced binary search tree with 1000 values would be full up through level
 4. When you reach a node that has no right child, stop.
 5. The value at that node is the greatest value in the tree.
 
-## Task 4: 
+## Task 4: Write a code in C++ using the same array mentioned in #1 and implement a binary search tree. Only insertion operation is required. 
 
 ```c++
 #include <iostream>        
