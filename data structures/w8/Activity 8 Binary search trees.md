@@ -49,12 +49,12 @@ So a balanced binary search tree with 1000 values would be full up through level
 ## Task 4: 
 
 ```c++
-#include <iostream>        // allows input and output operations (like cout)
+#include <iostream>        
 using namespace std;       
 
-// define a "Node" structure, which is the basic building block of our binary search tree
+
 struct Node {
-    int val;              // the integer value stored in this node
+    int val;              
     Node* left;           // pointer to the left child (smaller values go here)
     Node* right;          // pointer to the right child (larger values go here)
 };
