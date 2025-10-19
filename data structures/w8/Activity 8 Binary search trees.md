@@ -8,6 +8,8 @@ Video explanation:
 
 ## Task 2: If a well-balanced binary search tree contains 1,000 values, what is the maximum number of steps it would take to search for a value within it?
 
+What is the least amount of layers that a binary search tree can have to contain 1,000 values? If we answer this question, we know the maximum amount of layers it would need to traverse in a well balanced tree. 
+
 Level 1: 1 node (root)
 Total = 1
 
