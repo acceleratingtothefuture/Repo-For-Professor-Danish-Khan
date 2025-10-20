@@ -7,43 +7,12 @@
 | Nora AI SWE Intern           |   React, JavaScript, and modern frontend developmentvCSS and responsive UI design Backend and API integration AI/ML and LLM integration experience Strong debugging and problem-solving skills   | I know some react.js I'm proficient in vanilla JS and front end dev like CSS. I know some backend API stuff. I can API call to an LLM which is easy.|
 | Hyve Solutions Software Engineering Intern| proficiency in Python, Go, Java, C++, or JavaScript, strong understanding of data structures, algorithms, and object-oriented programming, experience with RESTful APIs and relational databases like MySQL, familiarity with AI and ML frameworks, version control using Git, and the ability to debug and optimize code for performance. | I know OOP, I am in data structures. I don't know any Go but I know Python, Java, C++, JS. I have used MySQL a lot |
 | Clark Associates Software Development Internship | C#, ASP.NET Core, JavaScript, TypeScript, React, SQL, and API development and integration, along with experience in building and maintaining web applications, backend tools, and enterprise-level software solutions in an Agile environment. | I don't know C#, I need more backend experience. I am comfortable with web apps. I need to work on my API dev skills.|
-| Salesforce Summer 2026 Intern- Software Engineer           |   Core technical skills include object-oriented programming and design, algorithms, data structures, and practical coding application, along with proficiency in Java, JavaScript, and related frameworks, SQL and relational databases, and familiarity with HTML, web technologies, and both frontend and backend development.| 23.99 |
-| Adobe 2026 AI/ML Intern - Machine Learning Engineer    |  statistical modeling, machine learning, deep learning, and data analytics, with proficiency in Python, Java, or C, experience using tools like R, Matlab, and scikit-learn, and the ability to develop scalable predictive models and algorithms for large-scale data systems. | 19.99 |
-| Kollectiv Inc. Machine Learning Intern. VoiceAI Systems |  Core technical skills include Python programming, machine learning and AI development, prompt engineering and LLM-based conversational systems, voice AI technologies such as speech-to-text and text-to-speech, backend and API integration, and building and testing evaluation frameworks for production-grade AI workflows. | 42.99 |
-| SQL Hat           |   True   | 23.99 |
-| Codecademy Tee    |  False   | 19.99 |
-| Codecademy Hoodie |  False   | 42.99 |
-| SQL Hat           |   True   | 23.99 |
-| Codecademy Tee    |  False   | 19.99 |
-| Codecademy Hoodie |  False   | 42.99 |
-| SQL Hat           |   True   | 23.99 |
-| Codecademy Tee    |  False   | 19.99 |
-| Codecademy Hoodie |  False   | 42.99 |
-| SQL Hat           |   True   | 23.99 |
-| Codecademy Tee    |  False   | 19.99 |
-| Codecademy Hoodie |  False   | 42.99 |
+| Salesforce Summer 2026 Intern- Software Engineer           |   Core technical skills include object-oriented programming and design, algorithms, data structures, and practical coding application, along with proficiency in Java, JavaScript, and related frameworks, SQL and relational databases, and familiarity with HTML, web technologies, and both frontend and backend development.| I know OOP and data structures. I can write Java and JS pretty well. I know basic SQL and web tech. I could use more backend practice but I can handle it. |
+| Adobe 2026 AI/ML Intern - Machine Learning Engineer    |  statistical modeling, machine learning, deep learning, and data analytics, with proficiency in Python, Java, or C, experience using tools like R, Matlab, and scikit-learn, and the ability to develop scalable predictive models and algorithms for large-scale data systems. | I know Python well and I’ve used scikit-learn a lot. I understand ML and basic deep learning. I haven’t used R or Matlab but I could pick them up quick. I’ve worked with models in Colab and can make them production-ready|
+| Kollectiv Inc. Machine Learning Intern. VoiceAI Systems |  Core technical skills include Python programming, machine learning and AI development, prompt engineering and LLM-based conversational systems, voice AI technologies such as speech-to-text and text-to-speech, backend and API integration, and building and testing evaluation frameworks for production-grade AI workflows. |I know Python and I’ve played with LLMs and prompt engineering. I’ve done API integrations and worked with AI agent projects. I haven’t done full voice pipelines yet but I understand how they work conceptually. |
+| Soap Payments SWE Intern          |   Core technical skills include full-stack web development with Ruby on Rails and React, prototyping and testing fintech applications, integrating AI into payment and compliance systems, and building scalable backend and frontend workflows for real-world financial infrastructure.   | I know React well and can handle frontend and API connections. I don’t know Ruby on Rails but I’ve built full-stack stuff with Node. I’m interested in AI + fintech and could adapt quick |
+| EZ Estimate   Part-Time Developer (Project-Based) |  Core technical skills include frontend development with React or similar frameworks, backend development with Node.js, Firebase, or Supabase, building and integrating REST APIs, deploying web applications, and writing clean, production-ready JavaScript or Python code for real-world business tools.   | I know React and JS well. I’ve deployed small projects and used REST APIs. I’ve used Firebase before. I can write clean, usable code and like working on practical projects. |
+| Brilliance Strategies Software Engineer - Machine Learning | Core technical skills include Python programming, machine learning model development using TensorFlow or PyTorch, algorithm and data structure design, embedded and robotics system integration, ML pipeline optimization for real-time and industrial environments, and experience with edge computing, robotic vision, and control algorithms. |I know Python and have some TensorFlow experience. I haven’t done robotics or embedded work but I understand ML pipelines and can optimize code. I’m more software than hardware but could learn the rest fast.|
 
 
-Job Title:
-Main Requirements and Desired Skill Set:
-Current Skills:
 
-Job Title:
-Main Requirements and Desired Skill Set:
-Current Skills:
-
-Job Title:
-Main Requirements and Desired Skill Set:
-Current Skills:
-
-Job Title:
-Main Requirements and Desired Skill Set:
-Current Skills:
-
-Job Title:
-Main Requirements and Desired Skill Set:
-Current Skills:
-
-Job Title:
-Main Requirements and Desired Skill Set:
-Current Skills:
