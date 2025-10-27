@@ -16,6 +16,8 @@ Video explanation:
 
 <img width="817" height="550" alt="image" src="https://github.com/user-attachments/assets/8dee6597-a831-40a9-a027-fa10df148228" />
 
+NOTE: This is assuming we didn't insert 11. 
+
 The last node (furthest right of the bottom row) is popped off to replace the root node. Then each highest parent higher than it switches with it until the rule of children being less than parents always holds. 
 
 ## 3. Imagine you’ve built a brand-new heap by inserting the following numbers into the heap in this particular order: 55, 22, 34, 10, 2, 99, 68. If you then pop them from the heap one at a time and insert the numbers into a new array, in what order would the numbers now appear?
