@@ -1,6 +1,6 @@
 # Activity 9 Binary heaps
 
-Video explanation: 
+Video explanation: https://www.youtube.com/watch?v=kgExHjHkXYY
 
 ## 1: Draw what the following heap would look like after we insert the value 11 into it:
 
