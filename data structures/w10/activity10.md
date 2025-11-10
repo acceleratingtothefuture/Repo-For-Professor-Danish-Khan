@@ -5,6 +5,7 @@
 
 ## 2. Implement the graph created in step 1 and apply breadth and depth-first search algorithms using C++. (6 points)
 
+Let's try to search from Mark to Kevin. 
 ```c++
 #include <iostream>
 using namespace std;
@@ -184,17 +185,15 @@ int main() {
 ```
 ## 3. Compare both search algorithms in the context of Big O notations. (2 points)
 
-They are both O(n). BFS (Breadth-First Search):
+They are both O(n). Breadth-First Search:
 BFS starts at a node and first visits all the nodes that are directly connected to it, then visits all the nodes that are two steps away, then three steps away, and so on. It’s like exploring the graph in “waves,” going level by level. Because it looks at every node and every edge once, its time complexity is O(V + E), and it needs extra space to keep track of which nodes are waiting to be visited, which is O(V).
 
-DFS (Depth-First Search):
+Depth-First Search:
 DFS starts at a node and goes as far as it can down one path before backtracking and trying another path. It’s like following a tunnel to the end, then going back and taking a different tunnel. Just like BFS, it visits each node and edge only once, so the time complexity is also O(V + E). It uses a stack (or recursion) to remember where it is, which means the space it needs is also O(V).
 
 Consider eating this candy.
 
 <img width="800" height="738" alt="image" src="https://github.com/user-attachments/assets/6d7abc1f-1552-430a-888d-7d6c1d983f0a" />
-
-
 
 You could consider eating the candy from the highest to lowest, working your way down the layers (breadth), or you could simply eat all the candies of a certain flavor, then return to the top and do it again (similar to depth). 
 
