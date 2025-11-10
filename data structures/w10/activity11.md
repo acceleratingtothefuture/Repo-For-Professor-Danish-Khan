@@ -3,23 +3,25 @@
 ## Explain with the help of an example "Why Dijkstra's algorithm fails on negative weights".
 <img width="1807" height="993" alt="Untitled" src="https://github.com/user-attachments/assets/4551ab9f-9a81-464d-a9b1-d3ea9357653b" />
 
-Suppose we want to get from the start to the end. Dijkstra's algorithim basically says 
+Suppose you want a shortest path from the start to the end. Dijkstra’s algorithm does the following:
 
+1. Set every node’s distance to infinity except the start, which gets 0.
 
-"1. initialize everything as infinite distance, the start node is zero distance since you don't need to travel to it.
+2. From the nodes you can already reach with a finite distance but haven’t expanded yet, pick the one with the smallest distance. Look at all of its outgoing edges and update neighbors if you find a cheaper route.
 
-2. Of the nodes you haven't checked all the paths of, select the one with the smallest distance from the start, and check all of the new paths you can get from it. if the new paths are smaller distances from the exisitng paths, update the path to the newly found smaller path.
-  
-4. Repeat step 2 until you land at the end. The first time you land at the end, you've found the shortest path. It's the path from the node you got to the end from, and the path deduced to get to that node from the start."
+3. Keep doing that until you reach the end. The first time you reach the end, the distance you get is the shortest possible.
 
-Let's look at the above image. We'll initalize the start to 0 since we don't have to move and everything else will be initialized to infinity. 
+Now look at the graph in the image. The start is 0. A, D, and E get distances 2, 5, and 8. A is the smallest, so expand A. A reaches D with cost 2, so start to A to D is 4, which beats 5, so update D to 4. A also reaches B with cost 1, so start to A to B is 3, which beats infinity, so B becomes 3. A is done.
 
+Unexpanded nodes with known distances are now B (3), D (4), and E (8). B is smallest, so expand B. B reaches the end with cost 1, so start to A to B→end is 4. Dijkstra stops. It reports 4 as the shortest path.
 
-The algorithim works by prioritizing whatever the shortest path out from the start is. It always prioritizes checking from the shortest known path to A so far that hasn't been further explored, until it lands at the end. This assumes that each unseen path will only get "longer" (i.e have positive distance needed to travel it) since it is just an extra positive number on top of a path from the start we already discovered. So we are "greedy" and assume it will be worse. But with a negative number, the total distance actually contracts. You could add 5 to your distance for 99 nodes, but if the 99th node is has a -500, that 100 node path is actually a negative distance if you go all the way to the end. 
+But notice that the algorithm never touches start→E→C→end. That route is 8 + 10 + (−100) which gives −82. That’s way cheaper than 4. Dijkstra never discovers it because the algorithm always expands the node with the smallest known distance so far. It grows outward along the cheapest frontier and assumes later edges only add more cost. That assumption only holds when all edges are non-negative. With a large negative edge, a path that looks expensive at first can collapse to a much smaller value later.
+
+The algorithm is greedy. It keeps pushing outward from the cheapest partial path and won’t explore heavier paths that could pay off with a big negative edge later. This is why Dijkstra breaks on graphs with negative weights.
+
 
 <img width="259" height="194" alt="image" src="https://github.com/user-attachments/assets/16b80593-b60f-4d84-b519-cda3a7038316" />
 
-The algorithim is "greedy." It doesn't want any rewards along the way. It just wants to get to the end as fast as possible. If it checks a path only to find there are other paths that are still cheaper than it, it will abandon that path to check the possible cheaper paths. It always wants the cheapest one until it bumps into the. This doesn't work if there's a big reward (a negative number) that makes the whole journey worth it. 
-
+The algorithim is "greedy." It isn't looking for diamonds (a negative number that would cancel out the distance), it just wants to find the quickest way out. If it checks a path only to find there are other paths that are still quicker than it, it will abandon that path to check the possible cheaper paths. It always wants the cheapest one until it bumps into the end. This doesn't work if there's a big reward (a negative number) that makes the longer path actually worth it. It jumps to whoever has been acting the most effecient so far. 
 
 Dijkstra's algorithim is greedy in the sense that it moves out from a target and prioritizes looking for the shortest path built so far to test further paths from. 
