@@ -13,9 +13,9 @@ Suppose you want a shortest path from the start to the end. Dijkstra’s algorit
 
 Now look at the graph in the image. The start is 0. A, D, and E get distances 2, 5, and 8. A is the smallest, so expand A. A reaches D with cost 2, so start to A to D is 4, which beats 5, so update D to 4. A also reaches B with cost 1, so start to A to B is 3, which beats infinity, so B becomes 3. A is done.
 
-Unexpanded nodes with known distances are now B (3), D (4), and E (8). B is smallest, so expand B. B reaches the end with cost 1, so start to A to B→end is 4. Dijkstra stops. It reports 4 as the shortest path.
+Unexpanded nodes with known distances are now B (3), D (4), and E (8). B is smallest, so expand B. B reaches the end with cost 1, so start to A to B to end is 4. Dijkstra stops. It reports 4 as the shortest path.
 
-But notice that the algorithm never touches start→E→C→end. That route is 8 + 10 + (−100) which gives −82. That’s way cheaper than 4. Dijkstra never discovers it because the algorithm always expands the node with the smallest known distance so far. It grows outward along the cheapest frontier and assumes later edges only add more cost. That assumption only holds when all edges are non-negative. With a large negative edge, a path that looks expensive at first can collapse to a much smaller value later.
+But notice that the algorithm never touches start to E to C→end. That route is 8 + 10 + (−100) which gives −82. That’s way cheaper than 4. Dijkstra never discovers it because the algorithm always expands the node with the smallest known distance so far. It grows outward along the cheapest frontier and assumes later edges only add more cost. That assumption only holds when all edges are non-negative. With a large negative edge, a path that looks expensive at first can collapse to a much smaller value later.
 
 The algorithm is greedy. It keeps pushing outward from the cheapest partial path and won’t explore heavier paths that could pay off with a big negative edge later. This is why Dijkstra breaks on graphs with negative weights.
 
