@@ -1,5 +1,7 @@
 # Activity 11: Graphs
 
+Video explanation: https://youtu.be/7FWPept1knw
+
 ## Explain with the help of an example "Why Dijkstra's algorithm fails on negative weights".
 <img width="1807" height="993" alt="Untitled" src="https://github.com/user-attachments/assets/4551ab9f-9a81-464d-a9b1-d3ea9357653b" />
 
