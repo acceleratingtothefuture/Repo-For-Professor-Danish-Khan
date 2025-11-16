@@ -35,7 +35,7 @@ def factorial(n)
 end
 ```
 
-It will overflow and run infinitely. The code will multiply every other number from 10, so 10 then 8 then 4, then 2, then skipping over 1 and go to 0 then -2, then -4 never reaching a base case. 
+It will overflow and run infinitely. The code will multiply every other number from 10, so 10 then 8 then 6 then 4, then 2, then skipping over 1 and go to 0 then -2, then -4 never reaching a base case. 
 
 ## 3. Following is a function in which we pass in two numbers called low and high. The function returns the sum of all the numbers from low to high. For example, if low is 1, and high is 10, the function will return the sum of all numbers from 1 to 10, which is 55. However, our code is missing the base case, and will run indefinitely! Fix the code by adding the correct base case
 
