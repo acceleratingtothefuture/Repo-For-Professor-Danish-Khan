@@ -37,7 +37,59 @@ end
 
 It will overflow and run infinitely. The code will multiply every other number from 10, so 10 then 8 then 4, then 2, then skipping over 1 and go to 0 then -2, then -4 never reaching a base case. 
 
+## 3. Following is a function in which we pass in two numbers called low and high. The function returns the sum of all the numbers from low to high. For example, if low is 1, and high is 10, the function will return the sum of all numbers from 1 to 10, which is 55. However, our code is missing the base case, and will run indefinitely! Fix the code by adding the correct base case
+
+```pseudocode
+def sum(low, high)
+    return high + sum(low, high - 1)
+end
+```
+The code continues to lower high down until it gets to the base case. In the above example, the base case is when we finally get down to 1, which is low. So it should be return low if high == low
+```pseudocode
+def sum(low, high)
+    return low if high == low
+    return high + sum(low, high - 1)
+end
+```
+## 4. Here is an array containing both numbers as well as other arrays, which in turn contain numbers and arrays:
+
+```pseudocode
+array=[ 1, 
+        2, 
+        3,
+        [4, 5, 6],
+        7,
+        [8,
+          [9, 10, 11,
+            [12, 13, 14]
+          ] 
+        ],
+        [15, 16, 17, 18, 19,
+          [20, 21, 22,
+            [23, 24, 25,
+              [26, 27, 29]
+            ], 30, 31 
+          ], 32
+        ], 33 
+      ]
+```
+Write a recursive function that prints all the numbers (and just numbers).
 
 
+```pseudocode
+def print_numbers(item)
+    if item is a number
+        puts item
+        return
+    end
 
+    # item is an array
+    for element in item
+        print_numbers(element)
+    end
+end
+
+# call it like this:
+print_numbers(array)
+```
 
