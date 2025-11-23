@@ -55,9 +55,6 @@ function reverseInPlace(arr) {
 
   return arr;
 }
-
-
-
 ````
 
 ### 4 Following are three different implementations of a function that accepts an array of numbers and returns an array containing those numbers multiplied by 2. For example, if the input is [5, 4, 3, 2, 1], the output will be [10, 8, 6, 4, 2].
