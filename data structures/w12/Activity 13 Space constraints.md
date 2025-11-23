@@ -17,6 +17,7 @@ function wordBuilder(array) {
 
 ```
 
+It goes through every possible combination or basically n x n combinations which is O(n^2). 
 
 ## 2 Following is a function that reverses an array. Describe its space complexity in terms of Big O:
 
