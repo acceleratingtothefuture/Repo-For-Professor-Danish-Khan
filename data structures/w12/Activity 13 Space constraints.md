@@ -1,5 +1,7 @@
 # Activity 13 Space constraints
 
+Video explanation: https://youtu.be/iDGJi80jsqA
+
 ## 1 Following is the 'Word Builder' algorithm. Describe its space complexity in terms of Big O.
 
 ```pseudocode
