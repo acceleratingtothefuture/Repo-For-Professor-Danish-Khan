@@ -138,3 +138,35 @@ In this case, the function should return the 1.
 Using a nested-loops approach would take up to $O(N^2)$. 
 
 **Your job is to optimize the code so that it has a runtime of $O(N)$.**
+
+You have an array of length N containing distinct integers from 0 to N, with one missing. Use the sum formula or XOR. Sum is straightforward:
+
+```c++
+#include <iostream>
+#include <vector>
+
+int findMissingNumber(const std::vector<int>& nums) {
+    int n = nums.size();                // array length is N
+    long long expected = 1LL * n * (n + 1) / 2;  // sum 0..N
+    long long actual = 0;
+
+    for (int x : nums) {
+        actual += x;
+    }
+
+    return static_cast<int>(expected - actual);
+}
+
+int main() {
+    std::vector<int> a = {2, 3, 0, 6, 1, 5};          // missing 4
+    std::vector<int> b = {8, 2, 3, 9, 4, 7, 5, 0, 6}; // missing 1
+
+    std::cout << findMissingNumber(a) << "\n"; // 4
+    std::cout << findMissingNumber(b) << "\n"; // 1
+
+    return 0;
+}
+
+```
+
+This runs in O(N) time and O(1) extra space.
