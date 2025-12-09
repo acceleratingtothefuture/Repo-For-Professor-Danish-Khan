@@ -170,3 +170,72 @@ int main() {
 ```
 
 This runs in O(N) time and O(1) extra space.
+
+## Task 3
+
+You’re working on some more stock-prediction software. The function you’re writing accepts an array of predicted prices for a particular stock over the course of time.
+
+For example, this array of seven prices:
+
+```
+[10, 7, 5, 8, 11, 2, 6]
+```
+
+predicts that a given stock will have these prices over the next seven days. (On Day 1, the stock will close at \$10; on Day 2, the stock will close at $7; and so on.)
+
+Your function should calculate the greatest profit that could be made from a single “buy” transaction followed by a single “sell” transaction.
+
+In the previous example, the most money could be made if we bought the stock when it was worth \$5 and sold it when it was worth \$11. This yields a profit of $6 per share.
+
+Note that we could make even more money if we buy and sell multiple times, but for now, this function focuses on the most profit that could be made from just *one* purchase followed by *one* sale.
+
+Now, we could use nested loops to find the profit of every possible buy and sell combination. However, this would be $O(N^2)$ and too slow for our hotshot trading platform. 
+
+**Your job is to optimize the code so that the function clocks in at just $O(N)$.**
+
+Keep track of the lowest price you have seen so far.
+
+For each day after that, pretend you sell that day and calculate the profit.
+
+Remember the biggest profit you ever saw.
+
+```c++
+#include <iostream>
+using namespace std;
+
+int maxProfit(int prices[], int size) {
+    int minPrice = prices[0];
+    int maxProfit = prices[1] - prices[0];
+
+    for (int i = 1; i < size; i++) {
+        int profit = prices[i] - minPrice;
+
+        if (profit > maxProfit) {
+            maxProfit = profit;
+        }
+
+        if (prices[i] < minPrice) {
+            minPrice = prices[i];
+        }
+    }
+
+    return maxProfit;
+}
+
+int main() {
+    int prices[] = {10, 7, 5, 8, 11, 2, 6};
+    int size = 7;
+
+    cout << maxProfit(prices, size) << endl;  // prints 6
+
+    return 0;
+}
+```
+Why this is O(N)
+
+The loop runs once through the array.
+
+Each step does a couple of comparisons and assignments.
+
+No nested loops.
+```
