@@ -113,7 +113,7 @@ int main() {
 
 ```
 
-Time complexity:
+We go through the basketball list first and for each player we build a full name string with first and last name and put that full name in a hash set so we can check it fast later. Then we go through the football list and again build the full name string for each player. For each football full name we check if that name is in the basketball set, which tells us this person plays both sports, and we also check a second hash set so we do not add the same full name to the result more than once. If both checks pass we push the full name into the result list and record it in the added set. In the end the result list holds all players who appear in both original lists, and since we only walk each list once and all set operations are constant time on average, the whole thing runs in time proportional to the total number of players in both lists.
 
 Insertions: O(N)
 
@@ -191,7 +191,8 @@ int main() {
 
 ```
 
-This runs in O(N) time and O(1) extra space.
+The code works by using math instead of checking every number against every other number. It knows that if the array has length N, then the numbers are supposed to be all the integers from 0 up to N, with exactly one missing. First, it calculates what the sum of all numbers from 0 to N should be using the formula N times N plus 1 divided by 2. Then it loops through the array once and adds up all the numbers that are actually there. Since exactly one number is missing, the difference between the expected sum and the actual sum is that missing number. The function returns this difference, and because it only loops through the array one time and uses just a few variables, it runs in O(N) time and uses constant extra space.
+
 
 ## Task 3
 
@@ -295,13 +296,7 @@ int main() {
 }
 
 ```
-Why this is O(N)
-
-The loop runs once through the array.
-
-Each step does a couple of comparisons and assignments.
-
-No nested loops.
+We go through the list of prices one time and keep track of two things as we go. First, it remembers the lowest price it has seen so far, which represents the best day to buy before the current day. Second, for each new day, it pretends to sell on that day and calculates the profit by subtracting the lowest earlier price from today’s price. If this profit is bigger than the best profit seen so far, it saves it. After checking the profit, it updates the lowest price if today’s price is lower than any previous one. By doing this in a single loop, the code checks every possible buy and sell pair in an efficient way, without nested loops, and ends with the highest possible profit from one buy followed by one sell.
 
 ## Task 4
 
@@ -395,6 +390,7 @@ int main() {
 
 
 ```
+We scan the array one time while keeping track of the two largest values and the two smallest values seen so far. It needs the two largest numbers because their product could be the biggest if they are both positive, and it also needs the two smallest numbers because if they are both negative, multiplying them gives a large positive result. As the loop runs, each new number is compared against the current largest and smallest values and placed in the correct spot by shifting the old values down. After the loop finishes, the code computes the product of the two largest numbers and the product of the two smallest numbers and returns whichever product is bigger, which correctly handles negative values while only using a single pass through the array.
 ## Task 5
 
 You’re creating software that analyzes the data of body temperature readings taken from hundreds of human patients. These readings are taken from healthy people and range from 97.0 degrees Fahrenheit to 99.0 degrees Fahrenheit. An important point: within this application, *the decimal point never goes beyond the tenth place.*
@@ -442,6 +438,8 @@ int main() {
 
 
 ```
+First we set up a counting array where each spot represents one possible temperature. Then we go through the list of readings and, for each one, figure out which slot it belongs to and bump up the count there. After that, we walk through the counting array from lowest to highest and print each temperature the number of times it was seen. Since we only scan the input once and then scan this small fixed range, the whole thing runs in linear time instead of doing slower comparison-based sorting.
+
 ## Task 6
 
 You’re writing a function that accepts an array of unsorted integers and returns the length of the *longest consecutive sequence* among them. The sequence is formed by integers that increase by 1. For example, in the array:
@@ -521,7 +519,5 @@ int main() {
     return 0;
 }
 
-
-
-
 ```
+We first put every number from the array into a hash set so we can check if a value exists in constant time. Then we loop through the original array and for each number we only start a sequence if there is no number just before it (so if x is in the array but x − 1 is not, x is the start of a run). From that start value we keep checking x + 1, x + 2, x + 3, and so on in the set, counting how long this chain of consecutive numbers goes. Each time we finish a chain, we compare its length to the best length we have seen so far and update the best if this one is longer. In the end we return that best length. Building the set takes linear time, and the loops together are also linear because each integer is only walked forward through a sequence once, so the total runtime is O(N).
