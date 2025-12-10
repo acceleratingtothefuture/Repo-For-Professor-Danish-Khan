@@ -146,7 +146,6 @@ Using a nested-loops approach would take up to $O(N^2)$.
 
 **Your job is to optimize the code so that it has a runtime of $O(N)$.**
 
-You have an array of length N containing distinct integers from 0 to N, with one missing. Use the sum formula or XOR. Sum is straightforward:
 
 ```c++
 #include <iostream>   // for cout
