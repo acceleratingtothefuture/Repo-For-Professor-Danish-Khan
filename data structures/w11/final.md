@@ -346,3 +346,97 @@ int main() {
 
 
 ```
+## Task 6
+
+You’re writing a function that accepts an array of unsorted integers and returns the length of the *longest consecutive sequence* among them. The sequence is formed by integers that increase by 1. For example, in the array:
+
+```
+[10, 5, 12, 3, 55, 30, 4, 11, 2]
+```
+
+the longest consecutive sequence is 2-3-4-5. These four integers form an increasing sequence because each integer is one greater than the previous one. While there’s also a sequence of 10-11-12, it’s only a sequence of three integers. In this case, the function should return 4, since that’s the length of the *longest* consecutive sequence that can be formed from this array.
+
+One more example:
+
+```
+[19, 13, 15, 12, 18, 14, 17, 11]
+```
+
+This array’s longest sequence is 11-12-13-14-15, so the function would return 5.
+
+**Your job is to optimize the function so that it takes $O(N)$ time.**
+
+```c++
+#include <iostream>
+using namespace std;
+
+// Very simple bubble sort to keep things "bare bones"
+void bubbleSort(int arr[], int n) {
+    bool swapped;
+    for (int i = 0; i < n - 1; ++i) {
+        swapped = false;
+        for (int j = 0; j < n - 1 - i; ++j) {
+            if (arr[j] > arr[j + 1]) {
+                int temp   = arr[j];
+                arr[j]     = arr[j + 1];
+                arr[j + 1] = temp;
+                swapped = true;
+            }
+        }
+        if (!swapped) {
+            // Array is already sorted
+            break;
+        }
+    }
+}
+
+// Returns length of the longest consecutive sequence
+int longestConsecutive(int arr[], int n) {
+    if (n == 0) {
+        return 0;
+    }
+
+    // Sort the array first
+    bubbleSort(arr, n);
+
+    int best = 1;       // longest sequence found so far
+    int current = 1;    // length of the current sequence
+
+    for (int i = 1; i < n; ++i) {
+        if (arr[i] == arr[i - 1]) {
+            // Same number as before, ignore duplicate
+            continue;
+        } else if (arr[i] == arr[i - 1] + 1) {
+            // Continues the sequence
+            current++;
+        } else {
+            // Break in the sequence, reset current length
+            current = 1;
+        }
+
+        if (current > best) {
+            best = current;
+        }
+    }
+
+    return best;
+}
+
+int main() {
+    int a1[] = {10, 5, 12, 3, 55, 30, 4, 11, 2};
+    int n1 = sizeof(a1) / sizeof(a1[0]);
+
+    int a2[] = {19, 13, 15, 12, 18, 14, 17, 11};
+    int n2 = sizeof(a2) / sizeof(a2[0]);
+
+    int result1 = longestConsecutive(a1, n1);
+    int result2 = longestConsecutive(a2, n2);
+
+    cout << "Result for first array: " << result1 << endl;   // should print 4
+    cout << "Result for second array: " << result2 << endl;  // should print 5
+
+    return 0;
+}
+
+
+```
