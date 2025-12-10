@@ -1,5 +1,5 @@
 # Final Project
-Video explanation: 
+Video explanation: https://youtu.be/SSLkVzoxP0I
 
 ## Task 1
 
