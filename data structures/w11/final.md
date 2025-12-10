@@ -44,63 +44,113 @@ Walk the second list and check membership.
 Build result when there’s a match.
 ```c++
 
-#include <iostream>
-#include <vector>
-#include <string>
-#include <unordered_set>
+#include <iostream> // For std::cout and std::endl
+#include <vector>   // For std::vector
+#include <string>   // For std::string
 
 using namespace std;
 
+// This struct represents a single player.
+// Each player has a first name, a last name, and a team name.
 struct Player {
     string first_name;
     string last_name;
     string team;
 };
 
+// This function finds players who are in BOTH sports.
+// It takes two vectors of Player objects:
+//   - basketball_players: all the basketball players
+//   - football_players: all the football players
+// It returns a vector of strings, where each string is a full name like "Jill Huang".
 vector<string> playersInBothSports(
     const vector<Player>& basketball_players,
     const vector<Player>& football_players
 ) {
-    unordered_set<string> seen;
+    // This vector will hold the final result.
+    // Each entry is the full name of a player who appears in both lists.
     vector<string> result;
 
-    for (const auto& p : basketball_players) {
-        seen.insert(p.first_name + " " + p.last_name);
-    }
+    // Loop over every player in the basketball list.
+    for (int i = 0; i < basketball_players.size(); i++) {
 
-    for (const auto& p : football_players) {
-        string full_name = p.first_name + " " + p.last_name;
-        if (seen.count(full_name)) {
-            result.push_back(full_name);
+        // Build the basketball player's full name: "First Last".
+        string full_name_basketball =
+            basketball_players[i].first_name + " " + basketball_players[i].last_name;
+
+        // We only want to add each common player once.
+        // So before we do the nested search, we check if we already
+        // added this name to the result vector.
+        bool already_in_result = false;
+
+        // Look through the result vector to see if full_name_basketball is already there.
+        for (int r = 0; r < result.size(); r++) {
+            if (result[r] == full_name_basketball) {
+                // If we find it, we mark the flag and break out of this loop.
+                already_in_result = true;
+                break;
+            }
+        }
+
+        // If the name is already in the result, we skip the rest of this iteration.
+        if (already_in_result) {
+            continue; // Go straight to the next basketball player.
+        }
+
+        // Now we loop over every player in the football list
+        // to see if this basketball player also plays football.
+        for (int j = 0; j < football_players.size(); j++) {
+
+            // Build the football player's full name: "First Last".
+            string full_name_football =
+                football_players[j].first_name + " " + football_players[j].last_name;
+
+            // Compare the full names. If they match, then this person
+            // plays both basketball and football.
+            if (full_name_basketball == full_name_football) {
+
+                // Add the common player's full name to the result vector.
+                result.push_back(full_name_basketball);
+
+                // We found a match for this basketball player,
+                // so we can stop checking the remaining football players.
+                break;
+            }
         }
     }
 
+    // Return the vector of names that are in both sports.
     return result;
 }
 
 int main() {
-    vector<Player> basketball_players = {
-        {"Jill", "Huang", "Gators"},
-        {"Janko", "Barton", "Sharks"},
-        {"Wanda", "Vakulskas", "Sharks"},
-        {"Jill", "Moloney", "Gators"},
-        {"Luuk", "Watkins", "Gators"}
-    };
+    // Create the list of basketball players.
+    // Each entry is a Player struct with first name, last name, and team.
+    vector<Player> basketball_players;
+    basketball_players.push_back(Player{"Jill", "Huang", "Gators"});
+    basketball_players.push_back(Player{"Janko", "Barton", "Sharks"});
+    basketball_players.push_back(Player{"Wanda", "Vakulskas", "Sharks"});
+    basketball_players.push_back(Player{"Jill", "Moloney", "Gators"});
+    basketball_players.push_back(Player{"Luuk", "Watkins", "Gators"});
 
-    vector<Player> football_players = {
-        {"Hanzla", "Radosti", "32ers"},
-        {"Tina", "Watkins", "Barleycorns"},
-        {"Alex", "Patel", "32ers"},
-        {"Jill", "Huang", "Barleycorns"},
-        {"Wanda", "Vakulskas", "Barleycorns"}
-    };
+    // Create the list of football players.
+    vector<Player> football_players;
+    football_players.push_back(Player{"Hanzla", "Radosti", "32ers"});
+    football_players.push_back(Player{"Tina", "Watkins", "Barleycorns"});
+    football_players.push_back(Player{"Alex", "Patel", "32ers"});
+    football_players.push_back(Player{"Jill", "Huang", "Barleycorns"});
+    football_players.push_back(Player{"Wanda", "Vakulskas", "Barleycorns"});
 
+    // Call the function to find players who are in both sports.
     vector<string> both = playersInBothSports(basketball_players, football_players);
 
-    for (const auto& name : both) {
-        cout << name << endl;
+    // Print each name on its own line.
+    cout << "Players in both sports:" << endl;
+    for (int i = 0; i < both.size(); i++) {
+        cout << both[i] << endl;
     }
 
+    // Indicate successful program end.
     return 0;
 }
 
