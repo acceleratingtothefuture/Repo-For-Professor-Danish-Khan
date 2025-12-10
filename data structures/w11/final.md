@@ -44,88 +44,48 @@ Walk the second list and check membership.
 Build result when there’s a match.
 ```c++
 
-#include <iostream> // For std::cout and std::endl
-#include <vector>   // For std::vector
-#include <string>   // For std::string
-
+#include <iostream>
+#include <vector>
+#include <string>
+#include <unordered_set>
 using namespace std;
 
-// This struct represents a single player.
-// Each player has a first name, a last name, and a team name.
 struct Player {
     string first_name;
     string last_name;
     string team;
 };
 
-// This function finds players who are in BOTH sports.
-// It takes two vectors of Player objects:
-//   - basketball_players: all the basketball players
-//   - football_players: all the football players
-// It returns a vector of strings, where each string is a full name like "Jill Huang".
-vector<string> playersInBothSports(
-    const vector<Player>& basketball_players,
-    const vector<Player>& football_players
-) {
-    // This vector will hold the final result.
-    // Each entry is the full name of a player who appears in both lists.
+vector<string> playersInBothSports(const vector<Player>& basketball_players,
+                                   const vector<Player>& football_players) {
     vector<string> result;
 
-    // Loop over every player in the basketball list.
+    // Put all basketball full names in a set
+    unordered_set<string> basketballNames;
     for (int i = 0; i < basketball_players.size(); i++) {
+        string fullName = basketball_players[i].first_name + " " +
+                          basketball_players[i].last_name;
+        basketballNames.insert(fullName);
+    }
 
-        // Build the basketball player's full name: "First Last".
-        string full_name_basketball =
-            basketball_players[i].first_name + " " + basketball_players[i].last_name;
+    // Check each football player against the set
+    unordered_set<string> added;  // to avoid duplicates in result
+    for (int j = 0; j < football_players.size(); j++) {
+        string fullName = football_players[j].first_name + " " +
+                          football_players[j].last_name;
 
-        // We only want to add each common player once.
-        // So before we do the nested search, we check if we already
-        // added this name to the result vector.
-        bool already_in_result = false;
-
-        // Look through the result vector to see if full_name_basketball is already there.
-        for (int r = 0; r < result.size(); r++) {
-            if (result[r] == full_name_basketball) {
-                // If we find it, we mark the flag and break out of this loop.
-                already_in_result = true;
-                break;
-            }
-        }
-
-        // If the name is already in the result, we skip the rest of this iteration.
-        if (already_in_result) {
-            continue; // Go straight to the next basketball player.
-        }
-
-        // Now we loop over every player in the football list
-        // to see if this basketball player also plays football.
-        for (int j = 0; j < football_players.size(); j++) {
-
-            // Build the football player's full name: "First Last".
-            string full_name_football =
-                football_players[j].first_name + " " + football_players[j].last_name;
-
-            // Compare the full names. If they match, then this person
-            // plays both basketball and football.
-            if (full_name_basketball == full_name_football) {
-
-                // Add the common player's full name to the result vector.
-                result.push_back(full_name_basketball);
-
-                // We found a match for this basketball player,
-                // so we can stop checking the remaining football players.
-                break;
-            }
+        // If the name is in the basketball set and not yet in result
+        if (basketballNames.find(fullName) != basketballNames.end() &&
+            added.find(fullName) == added.end()) {
+            result.push_back(fullName);
+            added.insert(fullName);
         }
     }
 
-    // Return the vector of names that are in both sports.
     return result;
 }
 
 int main() {
-    // Create the list of basketball players.
-    // Each entry is a Player struct with first name, last name, and team.
     vector<Player> basketball_players;
     basketball_players.push_back(Player{"Jill", "Huang", "Gators"});
     basketball_players.push_back(Player{"Janko", "Barton", "Sharks"});
@@ -133,7 +93,6 @@ int main() {
     basketball_players.push_back(Player{"Jill", "Moloney", "Gators"});
     basketball_players.push_back(Player{"Luuk", "Watkins", "Gators"});
 
-    // Create the list of football players.
     vector<Player> football_players;
     football_players.push_back(Player{"Hanzla", "Radosti", "32ers"});
     football_players.push_back(Player{"Tina", "Watkins", "Barleycorns"});
@@ -141,18 +100,16 @@ int main() {
     football_players.push_back(Player{"Jill", "Huang", "Barleycorns"});
     football_players.push_back(Player{"Wanda", "Vakulskas", "Barleycorns"});
 
-    // Call the function to find players who are in both sports.
     vector<string> both = playersInBothSports(basketball_players, football_players);
 
-    // Print each name on its own line.
     cout << "Players in both sports:" << endl;
     for (int i = 0; i < both.size(); i++) {
         cout << both[i] << endl;
     }
 
-    // Indicate successful program end.
     return 0;
 }
+
 
 ```
 
@@ -192,30 +149,45 @@ Using a nested-loops approach would take up to $O(N^2)$.
 You have an array of length N containing distinct integers from 0 to N, with one missing. Use the sum formula or XOR. Sum is straightforward:
 
 ```c++
-#include <iostream>
-#include <vector>
+#include <iostream>   // for cout
+#include <vector>     // for vector
 
-int findMissingNumber(const std::vector<int>& nums) {
-    int n = nums.size();                // array length is N
-    long long expected = 1LL * n * (n + 1) / 2;  // sum 0..N
-    long long actual = 0;
+using namespace std;
 
-    for (int x : nums) {
-        actual += x;
+// This function finds the missing number in the array.
+// The array contains numbers from 0 to N, but one number is missing.
+int findMissingNumber(const vector<int>& nums) {
+    int n = nums.size();
+    // If the array length is N, then the numbers should be 0 through N.
+    // The sum of numbers from 0 to N is: N * (N + 1) / 2
+    int expectedSum = n * (n + 1) / 2;
+
+    int actualSum = 0;
+
+    // Loop through the array and add up all the values
+    for (int i = 0; i < n; i++) {
+        actualSum += nums[i];
     }
 
-    return static_cast<int>(expected - actual);
+    // The missing number is the difference between what the sum
+    // should be and what it actually is
+    return expectedSum - actualSum;
 }
 
 int main() {
-    std::vector<int> a = {2, 3, 0, 6, 1, 5};          // missing 4
-    std::vector<int> b = {8, 2, 3, 9, 4, 7, 5, 0, 6}; // missing 1
+    // Example 1: numbers from 0 to 6, missing 4
+    vector<int> a = {2, 3, 0, 6, 1, 5};
 
-    std::cout << findMissingNumber(a) << "\n"; // 4
-    std::cout << findMissingNumber(b) << "\n"; // 1
+    // Example 2: numbers from 0 to 9, missing 1
+    vector<int> b = {8, 2, 3, 9, 4, 7, 5, 0, 6};
+
+    // Call the function and print the results
+    cout << findMissingNumber(a) << endl; // should print 4
+    cout << findMissingNumber(b) << endl; // should print 1
 
     return 0;
 }
+
 
 ```
 
@@ -253,33 +225,75 @@ Remember the biggest profit you ever saw.
 #include <iostream>
 using namespace std;
 
+// This function takes an array of stock prices and the size of the array.
+// It returns the maximum profit you can make by buying once and selling once
+// in the future (sell day must be after buy day).
 int maxProfit(int prices[], int size) {
+    // If there are fewer than 2 prices, you cannot make any transaction.
+    // In a real program you might throw an error or handle this differently,
+    // but here we just return 0.
+    if (size < 2) {
+        return 0;
+    }
+
+    // Start by assuming the first price is the minimum price we have seen so far.
     int minPrice = prices[0];
+
+    // Initialize maxProfit as the profit from buying on day 0 and selling on day 1.
+    // This makes sure we compare real buy-sell pairs.
     int maxProfit = prices[1] - prices[0];
 
+    // Loop over the array starting at index 1, because index 0 is already in minPrice.
     for (int i = 1; i < size; i++) {
-        int profit = prices[i] - minPrice;
+        int currentPrice = prices[i];
 
-        if (profit > maxProfit) {
-            maxProfit = profit;
+        // Pretend we sell on this day at currentPrice.
+        // The best possible profit for selling today is currentPrice - minPrice,
+        // where minPrice is the lowest price we have seen before today.
+        int profitIfSoldToday = currentPrice - minPrice;
+
+        // If this profit is bigger than any profit we have seen so far,
+        // update maxProfit.
+        if (profitIfSoldToday > maxProfit) {
+            maxProfit = profitIfSoldToday;
         }
 
-        if (prices[i] < minPrice) {
-            minPrice = prices[i];
+        // Now update minPrice if today's price is lower than any previous price.
+        // This makes it a better buying price for future days.
+        if (currentPrice < minPrice) {
+            minPrice = currentPrice;
         }
     }
 
+    // After the loop, maxProfit holds the best profit from one buy and one sell.
     return maxProfit;
 }
 
 int main() {
+    // Example from the problem statement.
+    // Day 1: 10
+    // Day 2: 7
+    // Day 3: 5
+    // Day 4: 8
+    // Day 5: 11
+    // Day 6: 2
+    // Day 7: 6
     int prices[] = {10, 7, 5, 8, 11, 2, 6};
+
+    // Size of the array (7 days).
     int size = 7;
 
-    cout << maxProfit(prices, size) << endl;  // prints 6
+    // Call the function to compute the maximum profit.
+    int bestProfit = maxProfit(prices, size);
+
+    // Print the result to standard output using cout.
+    // For this example, the correct answer is 6:
+    // Buy at 5, sell at 11.
+    cout << "Maximum profit from one buy and one sell is: " << bestProfit << endl;
 
     return 0;
 }
+
 ```
 Why this is O(N)
 
@@ -304,15 +318,34 @@ We could use nested loops to multiply every possible pair of numbers, but this w
 #include <iostream>
 using namespace std;
 
+// This function finds the highest product of any two numbers in the array
 int maxProductOfTwo(int arr[], int n) {
+    // Start by assuming the first two numbers are the max and min
     int max1 = arr[0];
     int max2 = arr[1];
+
     int min1 = arr[0];
     int min2 = arr[1];
 
+    // Make sure max1 >= max2 at the start
+    if (max2 > max1) {
+        int temp = max1;
+        max1 = max2;
+        max2 = temp;
+    }
+
+    // Make sure min1 <= min2 at the start
+    if (min2 < min1) {
+        int temp = min1;
+        min1 = min2;
+        min2 = temp;
+    }
+
+    // Loop through the rest of the array once
     for (int i = 2; i < n; i++) {
         int x = arr[i];
 
+        // Update the two largest numbers
         if (x > max1) {
             max2 = max1;
             max1 = x;
@@ -320,6 +353,7 @@ int maxProductOfTwo(int arr[], int n) {
             max2 = x;
         }
 
+        // Update the two smallest numbers
         if (x < min1) {
             min2 = min1;
             min1 = x;
@@ -328,25 +362,37 @@ int maxProductOfTwo(int arr[], int n) {
         }
     }
 
-    int product1 = max1 * max2;
-    int product2 = min1 * min2;
+    // Product of the two largest numbers
+    int productMax = max1 * max2;
 
-    if (product1 > product2)
-        return product1;
-    else
-        return product2;
+    // Product of the two smallest numbers
+    // This matters because two negatives make a positive
+    int productMin = min1 * min2;
+
+    // Return the larger of the two products
+    if (productMax > productMin) {
+        return productMax;
+    } else {
+        return productMin;
+    }
 }
 
 int main() {
+    // Example array with both positive and negative numbers
     int arr[] = {5, -10, -6, 9, 4};
+
+    // Calculate number of elements in the array
     int n = sizeof(arr) / sizeof(arr[0]);
 
+    // Call the function
     int result = maxProductOfTwo(arr, n);
 
+    // Print the result
     cout << "Highest product of two numbers: " << result << endl;
 
     return 0;
 }
+
 
 ```
 ## Task 5
@@ -418,27 +464,8 @@ This array’s longest sequence is 11-12-13-14-15, so the function would return 
 
 ```c++
 #include <iostream>
+#include <unordered_set>
 using namespace std;
-
-// Very simple bubble sort to keep things "bare bones"
-void bubbleSort(int arr[], int n) {
-    bool swapped;
-    for (int i = 0; i < n - 1; ++i) {
-        swapped = false;
-        for (int j = 0; j < n - 1 - i; ++j) {
-            if (arr[j] > arr[j + 1]) {
-                int temp   = arr[j];
-                arr[j]     = arr[j + 1];
-                arr[j + 1] = temp;
-                swapped = true;
-            }
-        }
-        if (!swapped) {
-            // Array is already sorted
-            break;
-        }
-    }
-}
 
 // Returns length of the longest consecutive sequence
 int longestConsecutive(int arr[], int n) {
@@ -446,26 +473,32 @@ int longestConsecutive(int arr[], int n) {
         return 0;
     }
 
-    // Sort the array first
-    bubbleSort(arr, n);
+    // Put all numbers in a set for O(1) lookups
+    unordered_set<int> nums;
+    for (int i = 0; i < n; i++) {
+        nums.insert(arr[i]);
+    }
 
-    int best = 1;       // longest sequence found so far
-    int current = 1;    // length of the current sequence
+    int best = 1;
 
-    for (int i = 1; i < n; ++i) {
-        if (arr[i] == arr[i - 1]) {
-            // Same number as before, ignore duplicate
-            continue;
-        } else if (arr[i] == arr[i - 1] + 1) {
-            // Continues the sequence
-            current++;
-        } else {
-            // Break in the sequence, reset current length
-            current = 1;
-        }
+    // For each number, see if it is the start of a sequence
+    for (int i = 0; i < n; i++) {
+        int current = arr[i];
 
-        if (current > best) {
-            best = current;
+        // Only start counting if current - 1 is not in the set
+        if (nums.find(current - 1) == nums.end()) {
+            int length = 1;
+            int nextVal = current + 1;
+
+            // Count how long the sequence goes
+            while (nums.find(nextVal) != nums.end()) {
+                length++;
+                nextVal++;
+            }
+
+            if (length > best) {
+                best = length;
+            }
         }
     }
 
@@ -482,11 +515,13 @@ int main() {
     int result1 = longestConsecutive(a1, n1);
     int result2 = longestConsecutive(a2, n2);
 
-    cout << "Result for first array: " << result1 << endl;   // should print 4
-    cout << "Result for second array: " << result2 << endl;  // should print 5
+    cout << "Result for first array: " << result1 << endl;   // 4
+    cout << "Result for second array: " << result2 << endl;  // 5
 
     return 0;
 }
+
+
 
 
 ```
