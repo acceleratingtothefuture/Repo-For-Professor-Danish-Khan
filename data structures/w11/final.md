@@ -238,4 +238,64 @@ The loop runs once through the array.
 Each step does a couple of comparisons and assignments.
 
 No nested loops.
+
+## Task 4
+
+You’re writing a function that accepts an array of numbers and computes the highest product of any two numbers in the array. At first glance, this is easy, as we can just find the two greatest numbers and multiply them. However, our array can contain negative numbers and look like this:
+
+```pseudocode
+[5, -10, -6, 9, 4]
+```
+
+We could use nested loops to multiply every possible pair of numbers, but this would take $O(N^2)$ time. **Your job is to optimize the function so that it’s a speedy $O(N)$.**
+
+
+```c++
+#include <iostream>
+using namespace std;
+
+int maxProductOfTwo(int arr[], int n) {
+    int max1 = arr[0];
+    int max2 = arr[1];
+    int min1 = arr[0];
+    int min2 = arr[1];
+
+    for (int i = 2; i < n; i++) {
+        int x = arr[i];
+
+        if (x > max1) {
+            max2 = max1;
+            max1 = x;
+        } else if (x > max2) {
+            max2 = x;
+        }
+
+        if (x < min1) {
+            min2 = min1;
+            min1 = x;
+        } else if (x < min2) {
+            min2 = x;
+        }
+    }
+
+    int product1 = max1 * max2;
+    int product2 = min1 * min2;
+
+    if (product1 > product2)
+        return product1;
+    else
+        return product2;
+}
+
+int main() {
+    int arr[] = {5, -10, -6, 9, 4};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    int result = maxProductOfTwo(arr, n);
+
+    cout << "Highest product of two numbers: " << result << endl;
+
+    return 0;
+}
+
 ```
