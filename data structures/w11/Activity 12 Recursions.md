@@ -161,14 +161,14 @@ print_numbers(array)
 #include <vector>
 using namespace std;
 
-// An Item represents either:
-// 1) a single number
-// 2) a list of other Items
+//Item represents either:
+// 1. a single number
+// 2). a list of other Items
 struct Item {
     // tells us which kind this Item is
     bool isNumber;
 
-    // valid only if isNumber == true
+        //valid only if isNumber == true
     int number;
 
     // valid only if isNumber == false
@@ -186,8 +186,8 @@ struct Item {
 // recursive function that prints all numbers
 void print_numbers(const Item& item) {
 
-    // base case:
-    // if this Item is a number, print it and stop
+    //base case:
+    //if this Item is a number, print it and stop
     if (item.isNumber) {
         cout << item.number << endl;
         return;
@@ -196,16 +196,13 @@ void print_numbers(const Item& item) {
     // recursive case:
     // this Item is a list, so walk through it
     for (const auto& element : item.list) {
-        // recurse on each element, which may itself
-        // be a number or another list
+            // recurse on each element, which may itself be a number on a list 
         print_numbers(element);
     }
 }
 
 int main() {
 
-    // build a nested structure that matches the given array
-    // numbers and lists are freely mixed
     Item array = {
         1,
         2,
@@ -234,7 +231,7 @@ int main() {
         33
     };
 
-    // start the recursion at the top level
+    //start the recursion at the top level
     print_numbers(array);
 
     return 0;
