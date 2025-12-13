@@ -196,7 +196,7 @@ void print_numbers(const Item& item) {
     // recursive case:
     // this Item is a list, so walk through it
     for (const auto& element : item.list) {
-            // recurse on each element, which may itself be a number on a list 
+            //  perform on each element inside of the list, which could recursively go again if its numbers inside of a list inside of another list 
         print_numbers(element);
     }
 }
