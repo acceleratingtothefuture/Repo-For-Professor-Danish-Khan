@@ -174,12 +174,12 @@ struct Item {
     // valid only if isNumber == false
     vector<Item> list;
 
-    // constructor for a number
-    // lets us write: Item x = 5;
+    //constructor for number
+    // eg if x = 5;
     Item(int n) : isNumber(true), number(n) {}
 
-    // constructor for a list
-    // lets us write: Item x = {1, 2, {3, 4}};
+    //constructor for list
+    // eg if x = {1, 2, {3, 4}};
     Item(initializer_list<Item> l) : isNumber(false), list(l) {}
 };
 
@@ -194,9 +194,9 @@ void print_numbers(const Item& item) {
     }
 
     // recursive case:
-    // this Item is a list, so walk through it
+            //this Item is a list, so go through it
     for (const auto& element : item.list) {
-            //  perform on each element inside of the list, which could recursively go again if its numbers inside of a list inside of another list 
+            //perform on each element inside of the list, which could recursively go again if its numbers inside of a list inside of another list 
         print_numbers(element);
     }
 }
