@@ -28,6 +28,28 @@ low > high
 
 When that condition is true, the function returns and the recursive calls stop. In this case, its once low = 12. 
 
+```c++
+#include <iostream>
+using namespace std;
+
+void print_every_other(int low, int high) {
+    // base case
+    if (low > high) {
+        return;
+    }
+
+    cout << low << endl;
+    print_every_other(low + 2, high);
+}
+
+int main() {
+    print_every_other(0, 10);
+    return 0;
+}
+
+
+```
+
 ## 2. My kid was playing with my computer and changed my factorial function so that it computes factorial based on (n - 2) instead of (n - 1). Predict what will happen when we run factorial(10) using this function:
 
 ```pseudocode
@@ -38,6 +60,27 @@ end
 ```
 
 It will overflow and run infinitely. The code will multiply every other number from 10, so 10 then 8 then 6 then 4, then 2, then skipping over 1 and go to 0 then -2, then -4 never reaching a base case. 
+
+This code won't print: 
+
+```c++
+
+#include <iostream>
+using namespace std;
+
+long long factorial(int n) {
+    if (n == 1) {
+        return 1;
+    }
+    return n * factorial(n - 2);
+}
+
+int main() {
+    cout << factorial(10) << endl;
+    return 0;
+}
+
+```
 
 ## 3. Following is a function in which we pass in two numbers called low and high. The function returns the sum of all the numbers from low to high. For example, if low is 1, and high is 10, the function will return the sum of all numbers from 1 to 10, which is 55. However, our code is missing the base case, and will run indefinitely! Fix the code by adding the correct base case
 
