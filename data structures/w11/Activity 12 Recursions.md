@@ -96,6 +96,24 @@ def sum(low, high)
     return high + sum(low, high - 1)
 end
 ```
+
+```c++
+#include <iostream>
+using namespace std;
+
+int sum(int low, int high) {
+    if (high == low) {
+        return low;
+    }
+    return high + sum(low, high - 1);
+}
+
+int main() {
+    cout << sum(1, 10) << endl; // prints 55
+    return 0;
+}
+
+```
 ## 4. Here is an array containing both numbers as well as other arrays, which in turn contain numbers and arrays:
 
 ```pseudocode
@@ -136,5 +154,92 @@ end
 
 # call it like this:
 print_numbers(array)
+```
+
+```c++
+#include <iostream>
+#include <vector>
+using namespace std;
+
+// An Item represents either:
+// 1) a single number
+// 2) a list of other Items
+struct Item {
+    // tells us which kind this Item is
+    bool isNumber;
+
+    // valid only if isNumber == true
+    int number;
+
+    // valid only if isNumber == false
+    vector<Item> list;
+
+    // constructor for a number
+    // lets us write: Item x = 5;
+    Item(int n) : isNumber(true), number(n) {}
+
+    // constructor for a list
+    // lets us write: Item x = {1, 2, {3, 4}};
+    Item(initializer_list<Item> l) : isNumber(false), list(l) {}
+};
+
+// recursive function that prints all numbers
+void print_numbers(const Item& item) {
+
+    // base case:
+    // if this Item is a number, print it and stop
+    if (item.isNumber) {
+        cout << item.number << endl;
+        return;
+    }
+
+    // recursive case:
+    // this Item is a list, so walk through it
+    for (const auto& element : item.list) {
+        // recurse on each element, which may itself
+        // be a number or another list
+        print_numbers(element);
+    }
+}
+
+int main() {
+
+    // build a nested structure that matches the given array
+    // numbers and lists are freely mixed
+    Item array = {
+        1,
+        2,
+        3,
+        {4, 5, 6},
+        7,
+        {
+            8,
+            {
+                9, 10, 11,
+                {12, 13, 14}
+            }
+        },
+        {
+            15, 16, 17, 18, 19,
+            {
+                20, 21, 22,
+                {
+                    23, 24, 25,
+                    {26, 27, 29}
+                },
+                30, 31
+            },
+            32
+        },
+        33
+    };
+
+    // start the recursion at the top level
+    print_numbers(array);
+
+    return 0;
+}
+
+
 ```
 
