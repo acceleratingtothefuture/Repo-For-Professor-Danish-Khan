@@ -60,7 +60,7 @@ vector<string> playersInBothSports(const vector<Player>& basketball_players,
                                    const vector<Player>& football_players) {
     vector<string> result;
 
-    // Put all basketball full names in a set
+    //put all basketball full names in a set
     unordered_set<string> basketballNames;
     for (int i = 0; i < basketball_players.size(); i++) {
         string fullName = basketball_players[i].first_name + " " +
@@ -68,13 +68,13 @@ vector<string> playersInBothSports(const vector<Player>& basketball_players,
         basketballNames.insert(fullName);
     }
 
-    // Check each football player against the set
-    unordered_set<string> added;  // to avoid duplicates in result
+    // check each football player against the set
+    unordered_set<string> added;  //to avoid duplicates in result
     for (int j = 0; j < football_players.size(); j++) {
         string fullName = football_players[j].first_name + " " +
                           football_players[j].last_name;
 
-        // If the name is in the basketball set and not yet in result
+    // if the name is in the basketball set and not yet in result
         if (basketballNames.find(fullName) != basketballNames.end() &&
             added.find(fullName) == added.end()) {
             result.push_back(fullName);
@@ -119,7 +119,7 @@ Insertions: O(N)
 
 Lookups: O(M)
 
-Total runtime: O(N + M)
+total runtime: O(N + M)
 Space: O(N)
 
 ## Task 2
@@ -150,7 +150,6 @@ Using a nested-loops approach would take up to $O(N^2)$.
 ```c++
 #include <iostream>   
 #include <vector>     
-
 using namespace std;
 
 // This function finds the missing number in the array.
