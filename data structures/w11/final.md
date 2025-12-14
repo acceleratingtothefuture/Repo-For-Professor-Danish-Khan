@@ -173,13 +173,13 @@ int findMissingNumber(const vector<int>& nums) {
 }
 
 int main() {
-    // Example 1: numbers from 0 to 6, missing 4
+    // first example numbers from 0 to 6, missing 4
     vector<int> a = {2, 3, 0, 6, 1, 5};
 
-    // Example 2: numbers from 0 to 9, missing 1
+    // example 2: numbers from 0 to 9, missing 1
     vector<int> b = {8, 2, 3, 9, 4, 7, 5, 0, 6};
 
-    // Call the function and print the results
+    // call the function and print the results
     cout << findMissingNumber(a) << endl; // should print 4
     cout << findMissingNumber(b) << endl; // should print 1
 
@@ -224,30 +224,23 @@ Remember the biggest profit you ever saw.
 #include <iostream>
 using namespace std;
 
-// This function takes an array of stock prices and the size of the array.
-// It returns the maximum profit you can make by buying once and selling once
-// in the future (sell day must be after buy day).
-int maxProfit(int prices[], int size) {
-    // If there are fewer than 2 prices, you cannot make any transaction.
-    // In a real program you might throw an error or handle this differently,
-    // but here we just return 0.
+
     if (size < 2) {
         return 0;
     }
 
-    // Start by assuming the first price is the minimum price we have seen so far.
+    // start by assuming the first price is the minimum price we have seen so far.
     int minPrice = prices[0];
 
-    // Initialize maxProfit as the profit from buying on day 0 and selling on day 1.
-    // This makes sure we compare real buy-sell pairs.
+    // initialize maxProfit as the profit from buying on day 0 and selling on day 1, makes sure we compare real buy-sell pairs.
     int maxProfit = prices[1] - prices[0];
 
-    // Loop over the array starting at index 1, because index 0 is already in minPrice.
+    // loop over the array starting at index 1, because index 0 already established in minPrice.
     for (int i = 1; i < size; i++) {
         int currentPrice = prices[i];
 
-        // Pretend we sell on this day at currentPrice.
-        // The best possible profit for selling today is currentPrice - minPrice,
+        //assume we sell on this day at currentPrice.
+        // the best possible profit for selling today is currentPrice - minPrice,
         // where minPrice is the lowest price we have seen before today.
         int profitIfSoldToday = currentPrice - minPrice;
 
