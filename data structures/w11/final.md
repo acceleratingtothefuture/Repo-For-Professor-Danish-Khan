@@ -148,8 +148,8 @@ Using a nested-loops approach would take up to $O(N^2)$.
 
 
 ```c++
-#include <iostream>   // for cout
-#include <vector>     // for vector
+#include <iostream>   
+#include <vector>     
 
 using namespace std;
 
