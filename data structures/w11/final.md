@@ -35,11 +35,9 @@ We can use a nested-loops approach, comparing each player from one array against
 
 **Your job is to optimize the function so that it can run just $O(N + M)$.**
 
-Idea:
+MAIN IDEA: 
 
-Walk one list and put them in a hash table. 
-
-Walk the second list and see if each one is stored in the table. That way we don't have to compare to each one. We just see if its in the table and we're good. 
+Walk one list and put them in a hash table. Walk the second list and see if each one is stored in the table. That way we don't have to compare an element to the whole array each time. We just see if its in the table and we're good. 
 
 Build result when there’s a match.
 ```c++
@@ -216,11 +214,7 @@ Now, we could use nested loops to find the profit of every possible buy and sell
 
 **Your job is to optimize the code so that the function clocks in at just $O(N)$.**
 
-Keep track of the lowest price you have seen so far.
-
-For each day after that, pretend you sell that day and calculate the profit.
-
-Remember the biggest profit you ever saw.
+Big idea: if you sell a stock on a certain day, the best time to buy it was just the cheapest price it EVER was before it! So we traverse the array, continously updating the cheapest price as time goes on. On any day you sell, the biggest profit is just "price today - cheapest price we've seen in the past". So we keep track of that difference for each day. The biggest difference is the best combo. When we find the biggest difference, those 2 days that calcuated it are the respective buy and sell days. 
 
 ```c++
 #include <iostream>
@@ -299,6 +293,9 @@ You’re writing a function that accepts an array of numbers and computes the hi
 
 We could use nested loops to multiply every possible pair of numbers, but this would take $O(N^2)$ time. **Your job is to optimize the function so that it’s a speedy $O(N)$.**
 
+BIG IDEA: positive numbers arise from positive and positive or negative and negative multiplied. So our biggest number will either be from the two positive numbers with the biggest magnitude, or the two negative numbers with the biggest negative magnitude. So we just traverse the array and look at each number asking "is this the largest magnitude postive number we found? If so, its the new 1st place max and the current 1st place max is demoted to second. If not, is it at least bigger than the current 2nd place? If so update it. If not, move on to the next number." We also do the same check but for first and second place magnitude negative numbers. 
+
+So we can update our winners, traverse once, and then compare the positive * positive product and negative * negative product at the very end. And the winner of those is the highest product. 
 
 ```c++
 #include <iostream>
@@ -398,6 +395,13 @@ Using a classic sorting algorithm such as Quicksort would take $O(N log N)$. How
 
 Yes, that’s right. Even though you’ve learned that the fastest sorts are $O(N log N)$, this case is different. Why? In this case, there are limited possibilities for the readings. In such a case, we can sort these values in $O(N)$. It may be $N$ multiplied by a constant, but that’s still considered $O(N)$.
 
+BIG IDEA: there are only 21 possible values: 97.0, 97.1, 97.2, 97.3, 97.4 etc up to 99.0. So we create an array of 21 elements all initalized to zero. These 21 elements will each hold the count of a temp it represents. the zeroeth element represents 97.0 the first element 97.1 etc. 
+
+So how do we map a temp to the right element in the count array? 
+
+We subtract 97.0 the minimum from a number, then multiple it by 10 and make it an integer. so 97.0 becomes 0. 97.1 becomes 1. 97.2 becomes 2 etc. and as we traverse the unordered temps, we increase the count of the element represented to it. I.e for 97.6, we subtract 97.0 and multiple by 10 to get 6. we increase the count of element 6 in our array to represent another 97.6 found. 
+
+Now we have an array of counts for each temperature. So we can just traverse that array and print each element for its respective counts. for example if the zeroeth element ends with a count of 2, we print 97.0 twice. if the first element has a count of 1, then we print 97.1 once after that etc. 
 ```c++
 #include <iostream>
 using namespace std;
@@ -457,6 +461,8 @@ One more example:
 This array’s longest sequence is 11-12-13-14-15, so the function would return 5.
 
 **Your job is to optimize the function so that it takes $O(N)$ time.**
+
+BIG IDEA: a number can only be the start of a sequence if the number before it doesn't exist. So we traverse each number x and ask "is x - 1 in the sequence?" Of course, in order to be able to quickly see if the whole thing contains a certain previous number, we use a hash table. Anyway, we check each number to be the start of the sequence, and we see how far of a sequence we can get by counting up. if there's no x - 1, is there an x + 1? What about x + 2? We see how high much we can keep getting the next consecutive x + 1,2,3 etc. if the sequence we find is longer than the current record holder, we update it. 
 
 ```c++
 #include <iostream>
