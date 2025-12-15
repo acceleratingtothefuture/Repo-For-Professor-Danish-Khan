@@ -37,9 +37,9 @@ We can use a nested-loops approach, comparing each player from one array against
 
 Idea:
 
-Walk one list and store full names in an unordered_set.
+Walk one list and put them in a hash table. 
 
-Walk the second list and check membership.
+Walk the second list and see if each one is stored in the table. That way we don't have to compare to each one. We just see if its in the table and we're good. 
 
 Build result when there’s a match.
 ```c++
@@ -68,13 +68,12 @@ vector<string> playersInBothSports(const vector<Player>& basketball_players,
         basketballNames.insert(fullName);
     }
 
-    // check each football player against the set
-    unordered_set<string> added;  //to avoid duplicates in result
+    // go through each football player 
     for (int j = 0; j < football_players.size(); j++) {
         string fullName = football_players[j].first_name + " " +
                           football_players[j].last_name;
 
-    // if the name is in the basketball set and not yet in result
+    // see if in basketball table and add to result if not there 
         if (basketballNames.find(fullName) != basketballNames.end() &&
             added.find(fullName) == added.end()) {
             result.push_back(fullName);
