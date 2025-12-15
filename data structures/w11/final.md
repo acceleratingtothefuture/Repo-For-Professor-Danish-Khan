@@ -203,71 +203,62 @@ Now, we could use nested loops to find the profit of every possible buy and sell
 
 **Your job is to optimize the code so that the function clocks in at just $O(N)$.**
 
-Big idea: if you sell a stock on a certain day, the best time to buy it was just the cheapest price it EVER was before it! So we traverse the array, continously updating the cheapest price as time goes on. On any day you sell, the biggest profit is just "price today - cheapest price we've seen in the past". So we keep track of that difference for each day. The biggest difference is the best combo. When we find the biggest difference, those 2 days that calcuated it are the respective buy and sell days. 
+Big idea: If you sell on day i, the best buy day is the cheapest price strictly before day i. So we traverse the array, continously updating the cheapest price as time goes on. On any day you sell, the biggest profit is just "price today - cheapest price we've seen in the past". So we keep track of that difference for each day. The biggest difference is the best combo. When we find the biggest difference, those 2 days that calcuated it are the respective buy and sell days. 
 
 ```c++
 #include <iostream>
 using namespace std;
 
+struct Trade {
+    int profit;
+    int buyDay;   // 0-based index
+    int sellDay;  // 0-based index
+};
 
-    if (size < 2) {
-        return 0;
-    }
+Trade bestOneTrade(const int prices[], int size) {
+    // if fewer than 2 days, no trade
+    if (size < 2) return {0, -1, -1};
 
-    // start by assuming the first price is the minimum price we have seen so far.
     int minPrice = prices[0];
+    int minDay = 0;
 
-    // initialize maxProfit as the profit from buying on day 0 and selling on day 1, makes sure we compare real buy sell pairs.
-    int maxProfit = prices[1] - prices[0];
+    int bestProfit = prices[1] - prices[0];
+    int bestBuy = 0;
+    int bestSell = 1;
 
-    // loop over the array starting at index 1, because index 0 already established in minPrice.
-    for (int i = 1; i < size; i++) {
-        int currentPrice = prices[i];
+    for (int day = 1; day < size; day++) {
+        int profitIfSellToday = prices[day] - minPrice;
 
-        //assume we sell on this day at currentPrice.
-        // the best possible profit for selling today is currentPrice - minPrice,
-        // where minPrice is the lowest price we have seen before today.
-        int profitIfSoldToday = currentPrice - minPrice;
-
-        // if this profit is bigger than any profit we have seen so far,
-        // update maxProfit.
-        if (profitIfSoldToday > maxProfit) {
-            maxProfit = profitIfSoldToday;
+        // if selling today beats our best, record the buy/sell days
+        if (profitIfSellToday > bestProfit) {
+            bestProfit = profitIfSellToday;
+            bestBuy = minDay;
+            bestSell = day;
         }
 
-        // now update minPrice if today's price is lower than any previous price.
-        if (currentPrice < minPrice) {
-            minPrice = currentPrice;
+        // update the cheapest price we've ever seen before future days
+        if (prices[day] < minPrice) {
+            minPrice = prices[day];
+            minDay = day;
         }
     }
 
-    // after the loop, maxProfit holds the best profit from one buy and one sell.
-    return maxProfit;
+    return {bestProfit, bestBuy, bestSell};
 }
 
 int main() {
-    // example from the problem 
-    // Day 1: 10
-    // Day 2: 7
-    // Day 3: 5
-    // Day 4: 8
-    // Day 5: 11
-    // Day 6: 2
-    // Day 7: 6
     int prices[] = {10, 7, 5, 8, 11, 2, 6};
+    int size = sizeof(prices) / sizeof(prices[0]);
 
-    // size of the array (7 days).
-    int size = 7;
+    Trade t = bestOneTrade(prices, size);
 
-    // Call the function to compute the maximum profit.
-    int bestProfit = maxProfit(prices, size);
-
-
-    // for this example, the correct answer is 6: buy at 5, sell at 11.
-    cout << "Maximum profit from one buy and one sell is: " << bestProfit << endl;
+    cout << "Best profit: " << t.profit << "\n";
+    cout << "Buy day: " << (t.buyDay + 1) << " at price " << prices[t.buyDay] << "\n";
+    cout << "Sell day: " << (t.sellDay + 1) << " at price " << prices[t.sellDay] << "\n";
 
     return 0;
 }
+
 
 ```
 We go through the list of prices one time and keep track of two things as we go. First, it remembers the lowest price it has seen so far, which represents the best day to buy before the current day. Second, for each new day, it pretends to sell on that day and calculates the profit by subtracting the lowest earlier price from today’s price. If this profit is bigger than the best profit seen so far, it saves it. After checking the profit, it updates the lowest price if today’s price is lower than any previous one. By doing this in a single loop, the code checks every possible buy and sell pair in an efficient way, without nested loops, and ends with the highest possible profit from one buy followed by one sell.
