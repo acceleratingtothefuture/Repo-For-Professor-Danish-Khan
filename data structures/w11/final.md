@@ -420,6 +420,8 @@ int main() {
 }
 
 ```
+It's O(N + M). We traverse the array of temps once, increasing the count for each temp's respective spot in the count array. Then we travse the count array, outputting the corresponding tempurature the number of times that its count array stores. So its two traverses so its O(N). 
+
 First we set up a counting array where each spot represents one possible temperature. Then we go through the list of readings and, for each one, figure out which slot it belongs to and bump up the count there. After that, we walk through the counting array from lowest to highest and print each temperature the number of times it was seen. Since we only scan the input once and then scan this small fixed range, the whole thing runs in linear time instead of doing slower comparison based sorting.
 
 ## Task 6
