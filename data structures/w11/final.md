@@ -37,15 +37,13 @@ We can use a nested-loops approach, comparing each player from one array against
 
 MAIN IDEA: 
 
-Walk one list and put them in a hash table. Walk the second list and see if each one is stored in the table. That way we don't have to compare an element to the whole array each time. We just see if its in the table and we're good. 
-
-Build result when there’s a match.
+Walk one list and put them in a hash table. Walk the second list and see if each one is stored in the table. That way we don't have to compare an element to the whole array each time. We just see if its in the table and we're good. Build result when there’s a match.
 ```c++
-
 #include <iostream>
 #include <vector>
 #include <string>
 #include <unordered_set>
+
 using namespace std;
 
 struct Player {
@@ -57,26 +55,22 @@ struct Player {
 vector<string> playersInBothSports(const vector<Player>& basketball_players,
                                    const vector<Player>& football_players) {
     vector<string> result;
-
-    //put all basketball full names in a set
-unordered_set<string> added;
     unordered_set<string> basketballNames;
+
+    // build hash table from basketball players
     for (int i = 0; i < basketball_players.size(); i++) {
         string fullName = basketball_players[i].first_name + " " +
                           basketball_players[i].last_name;
         basketballNames.insert(fullName);
     }
 
-    // go through each football player 
+    // traverse football players and look up in the hash table
     for (int j = 0; j < football_players.size(); j++) {
         string fullName = football_players[j].first_name + " " +
                           football_players[j].last_name;
 
-    // see if in basketball table and add to result if not there 
-        if (basketballNames.find(fullName) != basketballNames.end() &&
-            added.find(fullName) == added.end()) {
+        if (basketballNames.find(fullName) != basketballNames.end()) {
             result.push_back(fullName);
-            added.insert(fullName);
         }
     }
 
@@ -109,15 +103,10 @@ int main() {
 }
 
 
+
 ```
 
-We go through the basketball list first and for each player we build a full name string with first and last name and put that full name in a hash set so we can check it fast later. Then we go through the football list and again build the full name string for each player. For each football full name we check if that name is in the basketball set, which tells us this person plays both sports, and we also check a second hash set so we do not add the same full name to the result more than once. If both checks pass we push the full name into the result list and record it in the added set. In the end the result list holds all players who appear in both original lists, and since we only walk each list once and all set operations are constant time on average, the whole thing runs in time proportional to the total number of players in both lists.
-
-Insertions: O(N)
-
-Lookups: O(M)
-
-total runtime: O(N + M)
+total runtime: O(N + M). First pass: you walk the basketball list once and insert each full name into a hash table. That costs O(N). Second pass: you walk the football list once. For each player you do a hash lookup, which is O(1) average time. Doing that M times costs O(M).
 Space: O(N)
 
 ## Task 2
