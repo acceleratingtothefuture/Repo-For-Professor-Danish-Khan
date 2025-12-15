@@ -28,6 +28,8 @@ low > high
 
 When that condition is true, the function returns and the recursive calls stop. In this case, its once low = 12, because high is 10 and low increases by 2. 10 + 2 = 12. 
 
+Let's implement it in c++
+
 ```c++
 #include <iostream>
 using namespace std;
