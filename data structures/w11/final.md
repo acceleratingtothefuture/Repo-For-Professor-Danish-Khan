@@ -491,7 +491,7 @@ int longestConsecutive(int arr[], int n) {
                 length++;
                 nextVal++;
             }
-
+            //found a new best sequence, update it 
             if (length > best) {
                 best = length;
             }
