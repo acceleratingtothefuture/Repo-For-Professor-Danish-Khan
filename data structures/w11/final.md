@@ -61,6 +61,7 @@ vector<string> playersInBothSports(const vector<Player>& basketball_players,
     vector<string> result;
 
     //put all basketball full names in a set
+unordered_set<string> added;
     unordered_set<string> basketballNames;
     for (int i = 0; i < basketball_players.size(); i++) {
         string fullName = basketball_players[i].first_name + " " +
