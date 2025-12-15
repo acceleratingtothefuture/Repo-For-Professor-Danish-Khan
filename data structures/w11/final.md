@@ -152,23 +152,22 @@ Using a nested-loops approach would take up to $O(N^2)$.
 #include <vector>     
 using namespace std;
 
-// This function finds the missing number in the array.
+//   finds the missing number in the array.
 // The array contains numbers from 0 to N, but one number is missing.
 int findMissingNumber(const vector<int>& nums) {
     int n = nums.size();
-    // If the array length is N, then the numbers should be 0 through N.
+    // if the array length is N, then the numbers should be 0 through N.
     // The sum of numbers from 0 to N is: N * (N + 1) / 2
     int expectedSum = n * (n + 1) / 2;
 
     int actualSum = 0;
 
-    // Loop through the array and add up all the values
+    //loop through the array and add up all the values
     for (int i = 0; i < n; i++) {
         actualSum += nums[i];
     }
 
-    // The missing number is the difference between what the sum
-    // should be and what it actually is
+    //  missing number is the difference between what the sum should be and what it actually is
     return expectedSum - actualSum;
 }
 
@@ -232,7 +231,7 @@ using namespace std;
     // start by assuming the first price is the minimum price we have seen so far.
     int minPrice = prices[0];
 
-    // initialize maxProfit as the profit from buying on day 0 and selling on day 1, makes sure we compare real buy-sell pairs.
+    // initialize maxProfit as the profit from buying on day 0 and selling on day 1, makes sure we compare real buy sell pairs.
     int maxProfit = prices[1] - prices[0];
 
     // loop over the array starting at index 1, because index 0 already established in minPrice.
@@ -244,25 +243,24 @@ using namespace std;
         // where minPrice is the lowest price we have seen before today.
         int profitIfSoldToday = currentPrice - minPrice;
 
-        // If this profit is bigger than any profit we have seen so far,
+        // if this profit is bigger than any profit we have seen so far,
         // update maxProfit.
         if (profitIfSoldToday > maxProfit) {
             maxProfit = profitIfSoldToday;
         }
 
-        // Now update minPrice if today's price is lower than any previous price.
-        // This makes it a better buying price for future days.
+        // now update minPrice if today's price is lower than any previous price.
         if (currentPrice < minPrice) {
             minPrice = currentPrice;
         }
     }
 
-    // After the loop, maxProfit holds the best profit from one buy and one sell.
+    // after the loop, maxProfit holds the best profit from one buy and one sell.
     return maxProfit;
 }
 
 int main() {
-    // Example from the problem statement.
+    // example from the problem 
     // Day 1: 10
     // Day 2: 7
     // Day 3: 5
@@ -272,15 +270,14 @@ int main() {
     // Day 7: 6
     int prices[] = {10, 7, 5, 8, 11, 2, 6};
 
-    // Size of the array (7 days).
+    // size of the array (7 days).
     int size = 7;
 
     // Call the function to compute the maximum profit.
     int bestProfit = maxProfit(prices, size);
 
-    // Print the result to standard output using cout.
-    // For this example, the correct answer is 6:
-    // Buy at 5, sell at 11.
+
+    // for this example, the correct answer is 6: buy at 5, sell at 11.
     cout << "Maximum profit from one buy and one sell is: " << bestProfit << endl;
 
     return 0;
@@ -304,7 +301,7 @@ We could use nested loops to multiply every possible pair of numbers, but this w
 #include <iostream>
 using namespace std;
 
-// This function finds the highest product of any two numbers in the array
+// find  highest product of any two numbers in the array
 int maxProductOfTwo(int arr[], int n) {
     // Start by assuming the first two numbers are the max and min
     int max1 = arr[0];
@@ -313,25 +310,25 @@ int maxProductOfTwo(int arr[], int n) {
     int min1 = arr[0];
     int min2 = arr[1];
 
-    // Make sure max1 >= max2 at the start
+    // make  sure max1 >= max2 at the start
     if (max2 > max1) {
         int temp = max1;
         max1 = max2;
         max2 = temp;
     }
 
-    // Make sure min1 <= min2 at the start
+    //make sure min1 <= min2 at the start
     if (min2 < min1) {
         int temp = min1;
         min1 = min2;
         min2 = temp;
     }
 
-    // Loop through the rest of the array once
+    // loop through the rest of the array once
     for (int i = 2; i < n; i++) {
         int x = arr[i];
 
-        // Update the two largest numbers
+        //update the two largest numbers
         if (x > max1) {
             max2 = max1;
             max1 = x;
@@ -339,7 +336,7 @@ int maxProductOfTwo(int arr[], int n) {
             max2 = x;
         }
 
-        // Update the two smallest numbers
+        //update the two smallest numbers
         if (x < min1) {
             min2 = min1;
             min1 = x;
@@ -348,14 +345,14 @@ int maxProductOfTwo(int arr[], int n) {
         }
     }
 
-    // Product of the two largest numbers
+    //product of the two largest numbers
     int productMax = max1 * max2;
 
-    // Product of the two smallest numbers
+    //product of the two smallest numbers
     // This matters because two negatives make a positive
     int productMin = min1 * min2;
 
-    // Return the larger of the two products
+    // return the larger of the two products
     if (productMax > productMin) {
         return productMax;
     } else {
@@ -364,16 +361,16 @@ int maxProductOfTwo(int arr[], int n) {
 }
 
 int main() {
-    // Example array with both positive and negative numbers
+    // example array with both positive and negative numbers
     int arr[] = {5, -10, -6, 9, 4};
 
-    // Calculate number of elements in the array
+    //calculate number of elements in the array
     int n = sizeof(arr) / sizeof(arr[0]);
 
-    // Call the function
+    //call the function
     int result = maxProductOfTwo(arr, n);
 
-    // Print the result
+    //print the result
     cout << "Highest product of two numbers: " << result << endl;
 
     return 0;
@@ -407,13 +404,13 @@ int main() {
 
     int count[21] = {0};
 
-    // Count each temperature
+    // count each temperature
     for (int i = 0; i < 10; i++) {
         int index = (temps[i] - 97.0) * 10;
         count[index]++;
     }
 
-    // Print sorted temperatures
+    //print sorted temperatures
     cout << "Sorted temperatures:\n";
 
     for (int i = 0; i < 21; i++) {
@@ -456,13 +453,13 @@ This array’s longest sequence is 11-12-13-14-15, so the function would return 
 #include <unordered_set>
 using namespace std;
 
-// Returns length of the longest consecutive sequence
+// returns length of the longest consecutive sequence
 int longestConsecutive(int arr[], int n) {
     if (n == 0) {
         return 0;
     }
 
-    // Put all numbers in a set for O(1) lookups
+    //put all numbers in a set for O(1) lookups so we can just grab it right away
     unordered_set<int> nums;
     for (int i = 0; i < n; i++) {
         nums.insert(arr[i]);
@@ -470,11 +467,11 @@ int longestConsecutive(int arr[], int n) {
 
     int best = 1;
 
-    // For each number, see if it is the start of a sequence
+    //for each number, see if it is the start of a sequence
     for (int i = 0; i < n; i++) {
         int current = arr[i];
 
-        // Only start counting if current - 1 is not in the set
+        //only start counting if current - 1 is not in the set
         if (nums.find(current - 1) == nums.end()) {
             int length = 1;
             int nextVal = current + 1;
