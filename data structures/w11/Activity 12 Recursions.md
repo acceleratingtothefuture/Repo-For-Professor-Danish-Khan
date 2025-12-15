@@ -26,7 +26,7 @@ The base case is the condition that stops the recursion:
 
 low > high
 
-When that condition is true, the function returns and the recursive calls stop. In this case, its once low = 12. 
+When that condition is true, the function returns and the recursive calls stop. In this case, its once low = 12, because high is 10 and low increases by 2. 10 + 2 = 12. 
 
 ```c++
 #include <iostream>
@@ -81,6 +81,26 @@ int main() {
 }
 
 ```
+NOTE: the failure of the above code to print is evidence of the error. When we switch the line "return n * factorial(n - 2);" to "return n * factorial(n - 1);" it works!. 
+
+```c++
+
+#include <iostream>
+using namespace std;
+
+long long factorial(int n) {
+    if (n == 1) {
+        return 1;
+    }
+    return n * factorial(n - 1);
+}
+
+int main() {
+    cout << factorial(10) << endl;
+    return 0;
+}
+
+```
 
 ## 3. Following is a function in which we pass in two numbers called low and high. The function returns the sum of all the numbers from low to high. For example, if low is 1, and high is 10, the function will return the sum of all numbers from 1 to 10, which is 55. However, our code is missing the base case, and will run indefinitely! Fix the code by adding the correct base case
 
@@ -89,7 +109,10 @@ def sum(low, high)
     return high + sum(low, high - 1)
 end
 ```
-The code continues to lower high down until it gets to the base case. In the above example, the base case is when we finally get down to 1, which is low. So it should be return low if high == low
+
+The code continues to lower "high" down until it gets to the base case. In the above example from 1-10, the base case is when we finally get down to 1, which is equal to low. So it should be return low if high == low
+
+So with the base case, the pseudocode is: 
 ```pseudocode
 def sum(low, high)
     return low if high == low
@@ -97,6 +120,7 @@ def sum(low, high)
 end
 ```
 
+Let's try it in c++. 
 ```c++
 #include <iostream>
 using namespace std;
@@ -138,7 +162,9 @@ array=[ 1,
 ```
 Write a recursive function that prints all the numbers (and just numbers).
 
+IDEA: We want a function that traverses this array and prints the numbers. However, we want this function to recursively call itself whenever it encounters an element thats an array, so it can traverse the elements of that array and print those numbers and so on. 
 
+Here's the pseudocode. 
 ```pseudocode
 def print_numbers(item)
     if item is a number
@@ -155,7 +181,7 @@ end
 # call it like this:
 print_numbers(array)
 ```
-
+Let's try it in c++. 
 ```c++
 #include <iostream>
 #include <vector>
