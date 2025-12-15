@@ -203,7 +203,7 @@ Now, we could use nested loops to find the profit of every possible buy and sell
 
 **Your job is to optimize the code so that the function clocks in at just $O(N)$.**
 
-Big idea: If you sell on day i, the best buy day is the cheapest price strictly before day i. So we traverse the array, continously updating the cheapest price as time goes on. On any day you sell, the biggest profit is just "price today - cheapest price we've seen in the past". So we keep track of that difference for each day. The biggest difference is the best combo. When we find the biggest difference, those 2 days that calcuated it are the respective buy and sell days. 
+Big idea: If you sell on day i, the best buy day is the cheapest price strictly before day i. So we traverse the array, continously updating the cheapest price as time goes on. On any day you sell, the biggest profit is just "price today - cheapest price we've seen in the past". So we keep track of that difference for each day. The biggest difference is the best combo. When we find the biggest difference, those 2 days that calcuated it are the respective buy and sell days. Therefore it's O(N) because all we have to do is keep track each day of "what's the cheapest I could've bought before I sold today? And how much would I make from buying it that cheapest day in the past, and selling it today?" Traverse once. Keep finding those. Update the best. O(N).
 
 ```c++
 #include <iostream>
