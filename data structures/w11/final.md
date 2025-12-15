@@ -407,8 +407,7 @@ void sortTemperatures(const double temps[], int n) {
 
     //count each temperature
     for (int i = 0; i < n; i++) {
-        // The student's original logic: map 97.0 -> 0, 97.1 -> 1, ..., 99.0 -> 20
-        int index = (int)((temps[i] - 97.0) * 10);
+        int index = (int)((temps[i] - 97.0) * 10); //change it relative to minimum 
         count[index]++;
     }
 
