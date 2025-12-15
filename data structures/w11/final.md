@@ -146,6 +146,9 @@ Using a nested-loops approach would take up to $O(N^2)$.
 
 **Your job is to optimize the code so that it has a runtime of $O(N)$.**
 
+Main idea: the least clever N squared nested loop involves traversing the array and marking each number off from a list of what we should find, until we finish the array and our list has only one number remaining. 
+
+However. We can just sum all the numbers of the array up, and compare that to the sum of what we would expect if all the numbers were there. The difference is the missing number. So for the array we just add the natural numbers from 0 to N with the sumamtion formula, then we traverse the array once adding each element and compare. So its O(N). 
 
 ```c++
 #include <iostream>   
@@ -157,7 +160,7 @@ using namespace std;
 int findMissingNumber(const vector<int>& nums) {
     int n = nums.size();
     // if the array length is N, then the numbers should be 0 through N.
-    // The sum of numbers from 0 to N is: N * (N + 1) / 2
+    // The sum of numbers from 0 to N is: N * (N + 1) / 2. Use's Gauss's trick  
     int expectedSum = n * (n + 1) / 2;
 
     int actualSum = 0;
