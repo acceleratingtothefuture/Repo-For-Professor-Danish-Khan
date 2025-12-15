@@ -399,14 +399,16 @@ Yes, that’s right. Even though you’ve learned that the fastest sorts are $O(
 #include <iostream>
 using namespace std;
 
-int main() {
-    double temps[10] = {98.6, 98.0, 97.1, 99.0, 98.9, 97.8, 98.5, 98.2, 98.0, 97.1};
-
+// sort and print the temperatures using Counting Sort logic
+void sortTemperatures(const double temps[], int n) {
+    // We assume the maximum range is 99.0 - 97.0 = 2.0, with 0.1 increments.
+    // (2.0 / 0.1) + 1 = 21 possible values (97.0 to 99.0).
     int count[21] = {0};
 
-    // count each temperature
-    for (int i = 0; i < 10; i++) {
-        int index = (temps[i] - 97.0) * 10;
+    //count each temperature
+    for (int i = 0; i < n; i++) {
+        // The student's original logic: map 97.0 -> 0, 97.1 -> 1, ..., 99.0 -> 20
+        int index = (int)((temps[i] - 97.0) * 10);
         count[index]++;
     }
 
@@ -420,10 +422,16 @@ int main() {
             count[i]--;
         }
     }
+}
+
+int main() {
+    double temps[] = {98.6, 98.0, 97.1, 99.0, 98.9, 97.8, 98.5, 98.2, 98.0, 97.1};
+    int n = sizeof(temps) / sizeof(temps[0]);
+
+    sortTemperatures(temps, n);
 
     return 0;
 }
-
 
 ```
 First we set up a counting array where each spot represents one possible temperature. Then we go through the list of readings and, for each one, figure out which slot it belongs to and bump up the count there. After that, we walk through the counting array from lowest to highest and print each temperature the number of times it was seen. Since we only scan the input once and then scan this small fixed range, the whole thing runs in linear time instead of doing slower comparison based sorting.
