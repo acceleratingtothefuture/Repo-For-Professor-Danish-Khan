@@ -37,7 +37,7 @@ We can use a nested-loops approach, comparing each player from one array against
 
 MAIN IDEA: 
 
-Walk basketball players and put them in a hash table. Walk the football players and see if each one is stored in the basketball table. That way we don't have to compare an element to the whole array each time. We just see if its in the table and we're good. Build result when there’s a match.
+With hash tables, we can just immediately see if an item is in there without traversing the whole table. Walk basketball players and put them in a hash table. Walk the football players and see if each one is stored in the basketball table. That way we don't have to compare an element to the whole array each time. We just see if its in the table and we're good. Build result when there’s a match.
 ```c++
 #include <iostream>
 #include <vector>
